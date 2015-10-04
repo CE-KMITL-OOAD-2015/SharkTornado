@@ -8,5 +8,5 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class Controller {
-    MongoClient
+    MongoClient mongodb = new MongoClient();
 }
