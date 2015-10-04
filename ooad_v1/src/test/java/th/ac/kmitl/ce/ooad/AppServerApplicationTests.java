@@ -1,4 +1,4 @@
-package demo;
+package th.ac.kmitl.ce.ooad;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
