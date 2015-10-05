@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 Paper prototyping using Prototyping on paper application
 ============
@@ -13,3 +14,4 @@ Paper prototyping using Prototyping on paper application
 
 
 # by SharkTornado
+=======
