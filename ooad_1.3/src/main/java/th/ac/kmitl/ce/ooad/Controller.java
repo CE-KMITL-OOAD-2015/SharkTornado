@@ -1,7 +1,6 @@
 package th.ac.kmitl.ce.ooad;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
 
@@ -11,7 +10,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import static java.util.Arrays.asList;
-import org.bson.Document;
 import com.mongodb.Block;
 import com.mongodb.client.FindIterable;
 
@@ -23,8 +21,8 @@ import static java.util.Arrays.asList;
  */
 @RestController
 public class Controller {
-    MongoClient mongodb = new MongoClient();
-    MongoDatabase db = mongodb.getDatabase("test");
+    MongoClient mongodb = new MongoClient("203.151.92.185");
+    MongoDatabase db = mongodb.getDatabase("Account");
 
     @RequestMapping("/addtest")
     public void addTest() throws ParseException {
@@ -63,5 +61,14 @@ public class Controller {
             }
         });
         return temp[0].toJson();
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/addUser")
+    @ResponseBody
+    public String addUser(@RequestBody Account json){
+        db.getCollection("Account").insertOne(new Document("username", json.username)
+                                                    .append("name", json.name)
+                                                    .append("password", json.password));
+        return "Added " + json.name;
     }
 }
