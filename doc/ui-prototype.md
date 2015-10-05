@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 Paper prototyping using Prototyping on paper application
 ============
 
