@@ -67,7 +67,8 @@ public class Controller {
 
     @RequestMapping(method = RequestMethod.POST, value = "/testuser")
     @ResponseBody
-    public String testUser(HttpServletResponse response,@RequestBody String json){
-        return "Added " + json;
+    public String testUser(HttpServletResponse response,@RequestBody Account user){
+        Account temp = new Account(user);
+        return "Added " + temp.getName();
     }
 }
