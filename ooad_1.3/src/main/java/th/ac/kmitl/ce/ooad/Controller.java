@@ -21,7 +21,7 @@ import static java.util.Arrays.asList;
  */
 @RestController
 public class Controller {
-    MongoClient mongodb = new MongoClient("203.151.92.185");
+    MongoClient mongodb = new MongoClient();
     MongoDatabase db = mongodb.getDatabase("Account");
 
     @RequestMapping("/addtest")
