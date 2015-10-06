@@ -13,6 +13,8 @@ import static java.util.Arrays.asList;
 import com.mongodb.Block;
 import com.mongodb.client.FindIterable;
 
+import javax.servlet.http.HttpServletResponse;
+
 import static com.mongodb.client.model.Filters.*;
 import static com.mongodb.client.model.Sorts.ascending;
 import static java.util.Arrays.asList;
@@ -63,12 +65,9 @@ public class Controller {
         return temp[0].toJson();
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/addUser")
+    @RequestMapping(method = RequestMethod.POST, value = "/testuser")
     @ResponseBody
-    public String addUser(@RequestBody Account json){
-        db.getCollection("Account").insertOne(new Document("username", json.username)
-                                                    .append("name", json.name)
-                                                    .append("password", json.password));
-        return "Added " + json.name;
+    public String testUser(HttpServletResponse response,@RequestBody String json){
+        return "Added " + json;
     }
 }
