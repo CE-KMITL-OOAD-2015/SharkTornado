@@ -21,7 +21,14 @@ public class UserController {
     }
 
     protected static boolean isExist(String username){
-
         return userRepository.isExist(username);
+    }
+
+    protected static boolean authenUser(String usrname, String passphrase){
+        if(isExist(usrname)){
+            String tmp_pwd = userRepository.getUserPass(usrname);
+            if(passphrase.equals(tmp_pwd)) return true;
+        }
+        return false;
     }
 }

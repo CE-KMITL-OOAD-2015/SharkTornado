@@ -22,9 +22,15 @@ public class MainController {
         return tmp != null;
     }
 
+    @RequestMapping(value = "/login/{username}", params = "p")
+    @ResponseBody
+    public boolean loginUser(@PathVariable String username, @RequestParam("p") String passphrase){
+        return UserController.getInstance().authenUser(username, passphrase);
+    }
+
     @RequestMapping(value = "/login/{username}")
     @ResponseBody
-    public boolean loginUser(@PathVariable String username){
+    public boolean isUser(@PathVariable String username){
         return UserController.getInstance().isExist(username);
     }
 

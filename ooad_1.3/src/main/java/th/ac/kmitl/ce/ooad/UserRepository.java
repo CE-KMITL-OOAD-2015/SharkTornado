@@ -17,6 +17,7 @@ public class UserRepository {
     MongoClient mongoClient;
     MongoDatabase db;
     boolean exist = false;
+    private String p = "";
     public UserRepository(){
         mongoClient = new MongoClient();
         db = mongoClient.getDatabase("UserRepository");
@@ -68,6 +69,20 @@ public class UserRepository {
         });
         tmp = exist;
         exist = false;
+        return tmp;
+    }
+
+    protected String getUserPass(String usrname){
+        String tmp = "";
+        FindIterable<Document> cursor = db.getCollection("Users").find(new Document("usrname", usrname));
+        cursor.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                if(document.containsValue(usrname)) p = document.getString("pwd");
+            }
+        });
+        tmp = p;
+        p = "";
         return tmp;
     }
 }
