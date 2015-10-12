@@ -35,6 +35,17 @@ public class MainController {
     }
 
     public boolean changeUser(int command){
+
+        return false;
+    }
+
+    @RequestMapping(value = "/update/{userId}", params = {"command", "pwd"})
+    @ResponseBody
+    public boolean updatePwd(@PathVariable String userId, @RequestParam("command") int command, @RequestParam("pwd") String passphrase){
+        if(command == 1){
+            UserController.getInstance().updatePwd(userId, passphrase);
+            return true;
+        }
         return false;
     }
 

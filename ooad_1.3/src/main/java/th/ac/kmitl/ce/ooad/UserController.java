@@ -31,4 +31,9 @@ public class UserController {
         }
         return false;
     }
+
+    protected static boolean updatePwd(String userId, String passphrase){
+        userRepository.updatePasswd(userId, passphrase);
+        return false;
+    }
 }

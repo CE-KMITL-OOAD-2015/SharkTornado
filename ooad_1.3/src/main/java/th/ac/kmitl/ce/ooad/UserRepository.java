@@ -13,6 +13,8 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
+import static com.mongodb.client.model.Filters.eq;
+
 public class UserRepository {
     MongoClient mongoClient;
     MongoDatabase db;
@@ -38,8 +40,12 @@ public class UserRepository {
         return userId;
     }
 
-    public void updatePasswd(String userId, String passphrase){
-
+    public boolean updatePasswd(String userId, String passphrase){
+        if(isExistById(userId)){
+            db.getCollection("Users").updateOne(eq("userId", userId), new Document("$set", new Document("pwd", passphrase)));
+            return true;
+        }
+        return false;
     }
 
     public void updateEmail(String userId, String email){
@@ -65,6 +71,20 @@ public class UserRepository {
             @Override
             public void apply(final Document document) {
                 if(document.containsValue(usrname)) exist = true;
+            }
+        });
+        tmp = exist;
+        exist = false;
+        return tmp;
+    }
+
+    public boolean isExistById(String userId){
+        boolean tmp = false;
+        FindIterable<Document> cursor = db.getCollection("Users").find(new Document("userId", userId));
+        cursor.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                if(document.containsValue(userId)) exist = true;
             }
         });
         tmp = exist;
