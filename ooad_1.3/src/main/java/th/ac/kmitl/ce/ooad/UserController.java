@@ -13,10 +13,15 @@ public class UserController {
     public static UserController getInstance(){
         return user_controller;
     }
-    protected static boolean addUser(String username, String passpharse, String name, String email, String imgLoc){
+
+    protected static String addUser(String username, String passphrase, String name, String email, String imgLoc){
         Profile profile = new Profile(email, name, imgLoc);
-        Account account = new Account(profile, username, passpharse, "null");
-        userRepository.addUser(account);
-        return false;
+        Account account = new Account(profile, username, passphrase, "null");
+        return userRepository.addUser(account);
+    }
+
+    protected static boolean isExist(String username){
+
+        return userRepository.isExist(username);
     }
 }

@@ -11,6 +11,7 @@ public class Account {
         this.profile = profile;
         this.username = username;
         this.passphrase = passphrase;
+
         this.userId = userId;
     }
 
@@ -38,5 +39,11 @@ public class Account {
     public void setPassphrase(String passphrase) {
         this.passphrase = passphrase;
     }
+    public String getUserId() {
+        return userId;
+    }
 
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }

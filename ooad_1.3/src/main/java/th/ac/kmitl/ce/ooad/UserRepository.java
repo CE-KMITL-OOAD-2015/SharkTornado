@@ -5,14 +5,35 @@ package th.ac.kmitl.ce.ooad;
  */
 
 import java.util.UUID;
-public class UserRepository {
-    public UserRepository(){
 
+import com.mongodb.Block;
+import com.mongodb.MongoClient;
+
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
+
+public class UserRepository {
+    MongoClient mongoClient;
+    MongoDatabase db;
+    boolean exist = false;
+    public UserRepository(){
+        mongoClient = new MongoClient();
+        db = mongoClient.getDatabase("UserRepository");
     }
 
     public String addUser(Account newAccount){
-        String userId = UUID.randomUUID().toString();
-
+        String userId = null;
+        if(!isExist(newAccount.getUsername())){
+            userId = UUID.randomUUID().toString();
+            Document data = new Document("usrname", newAccount.getUsername())
+                    .append("pwd", newAccount.getPassphrase())
+                    .append("name", newAccount.getProfile().name)
+                    .append("email", newAccount.getProfile().email)
+                    .append("imgLoc", newAccount.getProfile().imgLoc)
+                    .append("userId", userId);
+            db.getCollection("Users").insertOne(data);
+        }
         return userId;
     }
 
@@ -34,5 +55,19 @@ public class UserRepository {
 
     public String getUserIdByEmail(String email){
         return "username";
+    }
+
+    public boolean isExist(String usrname){
+        boolean tmp = false;
+        FindIterable<Document> cursor = db.getCollection("Users").find(new Document("usrname", usrname));
+        cursor.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                if(document.containsValue(usrname)) exist = true;
+            }
+        });
+        tmp = exist;
+        exist = false;
+        return tmp;
     }
 }
