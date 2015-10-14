@@ -5,6 +5,7 @@ package th.ac.kmitl.ce.ooad;
  */
 public class Plan {
     public String cloudProv, vmIP;
-    public float monthlyRate, cpu, mem, network;
-    public int storage;
+    public String cpu, mem, network;
+    public String storage;
+    public float monthlyRate;
 }
