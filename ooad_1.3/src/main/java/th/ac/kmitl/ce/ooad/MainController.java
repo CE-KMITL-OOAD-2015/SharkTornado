@@ -48,4 +48,10 @@ public class MainController {
         return false;
     }
 
+    @RequestMapping(value = "/plan/{username}", params = {"password"})
+    @ResponseBody
+    public Plan requestPlan(@PathVariable String username, @RequestParam("password") String password){
+        return new Plan();
+    }
+
 }
