@@ -17,4 +17,20 @@ public class PlanModel {
         return vmProvider.getInstance().getPlanByUser(user);
     }
 
+    protected static Plan[] getAllUserPlan(Account user, String cloudProv){
+        return vmProvider.getInstance().getPlanByCloudProv(user, cloudProv);
+    }
+
+    protected static Plan[] getAllPlan(String cloudProv){
+        return vmProvider.getInstance().getPlanByCloudProv(null, cloudProv);
+    }
+
+    protected boolean updatePlan(Account user, String cloud, int plan) {
+        Plan[] plans = getAllPlan(cloud);
+        if(plan < plans.length){
+            vmProvider.getInstance().changePlan(user, plans[plan]);
+            return true;
+        }
+        return false;
+    }
 }

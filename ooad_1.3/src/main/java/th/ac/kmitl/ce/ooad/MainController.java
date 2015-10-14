@@ -48,10 +48,22 @@ public class MainController {
         return false;
     }
 
-    @RequestMapping(value = "/plan/{username}", params = {"password"})
+    @RequestMapping(value = "/plan/{userId}", params = {"password"})
     @ResponseBody
-    public Plan requestPlan(@PathVariable String username, @RequestParam("password") String password){
-        return new Plan();
+    public Plan[] requestUserPlan(@PathVariable String userId, @RequestParam("password") String password){
+        return PlanModel.getInstance().getPlan(UserModel.getInstance().getAccountById(userId));
+    }
+
+    @RequestMapping(value = "/plan/{userId}/{cloud}", params = {"password"})
+    @ResponseBody
+    public Plan[] requestCloudPlan(@PathVariable String userId, @RequestParam("password") String password, @PathVariable String cloud){
+        return PlanModel.getInstance().getAllPlan(cloud);
+    }
+
+    @RequestMapping(value = "/update/plan/{userId}/{cloud}", params = {"password", "ip", "plan"})
+    @ResponseBody
+    public boolean updatePlan(@PathVariable String userId, @PathVariable String cloud, @RequestParam ("password") String password, @RequestParam("ip") String ip, @RequestParam("plan") int plan){
+        return PlanModel.getInstance().updatePlan(UserModel.getInstance().getAccountById(userId), cloud, plan);
     }
 
 }

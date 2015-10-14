@@ -116,4 +116,8 @@ public class UserRepository {
         stemp = "";
         return tmp;
     }
+
+    protected Account getAccountById(String userId){
+        return new Account();
+    }
 }

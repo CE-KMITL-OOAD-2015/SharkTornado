@@ -48,7 +48,11 @@ public class UserModel {
         return false;
     }
 
-    private static String getUserById(String username){
-        return userRepository.getUserById(username);
+    private static String getUserById(String userId){
+        return userRepository.getUserById(userId);
+    }
+
+    protected static Account getAccountById(String userId){
+        return userRepository.getAccountById(userId);
     }
 }

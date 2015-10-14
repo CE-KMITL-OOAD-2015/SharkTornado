@@ -11,6 +11,9 @@ public class Account {
     private String username, passphrase, userId;
     private List<Cloud> clouds;
 
+    public Account() {
+    }
+
     public Account(Profile profile, String username, String passphrase, String userId) {
         this.profile = profile;
         this.username = username;
