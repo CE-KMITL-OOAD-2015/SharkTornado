@@ -18,8 +18,8 @@ apply plugin: 'spring-boot'
 apply plugin: 'io.spring.dependency-management' 
 
 jar {
-    baseName = 'ooad'
-    version = '1.4'
+    baseName = 'demo'
+    version = '0.0.1-SNAPSHOT'
 }
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -35,8 +35,6 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
     compile 'org.mongodb:mongo-java-driver:3.0.4'
     compile 'org.mongodb:bson:3.0.4'
-    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
-    testCompile("junit:junit")
 }
 
 
