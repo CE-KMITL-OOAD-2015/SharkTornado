@@ -11,4 +11,8 @@ public class Profile {
         this.name = name;
         this.imgLoc = imgLoc;
     }
+
+    public String toString(){
+        return String.format("Name=%s, email=%s, imgLocation=%s", name, email, imgLoc);
+    }
 }

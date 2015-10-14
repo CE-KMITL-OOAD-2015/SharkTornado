@@ -19,7 +19,7 @@ public class UserRepository {
     MongoClient mongoClient;
     MongoDatabase db;
     boolean exist = false;
-    private String p = "";
+    private String stemp = "";
     public UserRepository(){
         mongoClient = new MongoClient();
         db = mongoClient.getDatabase("UserRepository");
@@ -40,28 +40,39 @@ public class UserRepository {
         return userId;
     }
 
-    public boolean updatePasswd(String userId, String passphrase){
-        if(isExistById(userId)){
-            db.getCollection("Users").updateOne(eq("userId", userId), new Document("$set", new Document("pwd", passphrase)));
-            return true;
-        }
-        return false;
+    public void updatePasswd(String userId, String passphrase){
+        db.getCollection("Users").updateOne(eq("userId", userId), new Document("$set", new Document("pwd", passphrase)));
     }
 
     public void updateEmail(String userId, String email){
-
+        db.getCollection("Users").updateOne(eq("userId", userId), new Document(("$set"), new Document("email", email)));
     }
 
     public void updateProImage(String userId, String imgLoc){
-
+        db.getCollection("Users").updateOne(eq("userId", userId), new Document(("$set"), new Document("imgLoc", imgLoc)));
     }
 
     public void updateName(String userId, String name){
-
+        db.getCollection("Users").updateOne(eq("userId", userId), new Document("$set", new Document("name", name)));
     }
 
     public String getUserIdByEmail(String email){
+
         return "username";
+    }
+
+    public String getUserById(String userId){
+        String tmp = "";
+        FindIterable<Document> cursor = db.getCollection("Users").find(new Document("userId", userId));
+        cursor.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                if(document.containsValue(userId)) stemp = document.getString("usrname");
+            }
+        });
+        tmp = stemp;
+        stemp = "";
+        return tmp;
     }
 
     public boolean isExist(String usrname){
@@ -98,11 +109,15 @@ public class UserRepository {
         cursor.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {
-                if(document.containsValue(usrname)) p = document.getString("pwd");
+                if(document.containsValue(usrname)) stemp = document.getString("pwd");
             }
         });
-        tmp = p;
-        p = "";
+        tmp = stemp;
+        stemp = "";
         return tmp;
+    }
+
+    protected Account getAccountById(String userId){
+        return new Account();
     }
 }

@@ -6,47 +6,64 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 public class MainController {
-    private static final int CHANGE_PASSWORD = 0;
-    private static final int CHANGE_USERNAME = 1;
-    private static final int CHANGE_NAME = 2;
-    private static final int CHANGE_EMAIL = 3;
 
-    @RequestMapping(value = "/addUser/{username}/{name}", params = {"e", "p", "i"})
+    @RequestMapping(value = "/addUser/{username}/{name}", params = {"email", "password", "imgLocation"})
     @ResponseBody
-    public boolean addUser(@PathVariable String username,@RequestParam("p") String passphrase,
-                           @PathVariable String name, @RequestParam("e") String email, @RequestParam("i") String imgLoc){
+    public boolean addUser(@PathVariable String username,@RequestParam("password") String passphrase,
+                           @PathVariable String name, @RequestParam("email") String email, @RequestParam("imgLocation") String imgLoc){
         System.out.println("Add " + username);
-        String tmp = UserController.getInstance().addUser(username, passphrase, name, email, imgLoc);
-        if(tmp == null)System.out.println("Add " + username + " successfully.");
+        String tmp = UserModel.getInstance().addUser(username, passphrase, name, email, imgLoc);
+        if(tmp != null)System.out.println("Add " + username + " successfully.");
         else System.out.println("Add " + username + " not successfully.");
         return tmp != null;
     }
 
-    @RequestMapping(value = "/login/{username}", params = "p")
+    @RequestMapping(value = "/login/{username}", params = "password")
     @ResponseBody
-    public boolean loginUser(@PathVariable String username, @RequestParam("p") String passphrase){
-        return UserController.getInstance().authenUser(username, passphrase);
+    public boolean loginUser(@PathVariable String username, @RequestParam("password") String passphrase){
+        return UserModel.getInstance().authenUser(username, passphrase);
     }
 
     @RequestMapping(value = "/login/{username}")
     @ResponseBody
     public boolean isUser(@PathVariable String username){
-        return UserController.getInstance().isExist(username);
+        return UserModel.getInstance().isExist(username);
     }
 
-    public boolean changeUser(int command){
-
+    @RequestMapping(value = "/update/name/{username}", params = {"name", "password"})
+    public boolean updateName(@PathVariable String username, @RequestParam("name") String name, @RequestParam("password") String pwd){
+        if(UserModel.getInstance().authenUser(username, pwd)){
+            UserModel.getInstance().updateName(username, name);
+        }
         return false;
     }
 
-    @RequestMapping(value = "/update/{userId}", params = {"command", "pwd"})
+    @RequestMapping(value = "/update/password/{username}", params = {"password", "newpassword"})
     @ResponseBody
-    public boolean updatePwd(@PathVariable String userId, @RequestParam("command") int command, @RequestParam("pwd") String passphrase){
-        if(command == 1){
-            UserController.getInstance().updatePwd(userId, passphrase);
+    public boolean updatePwd(@PathVariable String username, @RequestParam("password") String pwd, @RequestParam("newpassword") String passphrase){
+        if(UserModel.getInstance().authenUser(username, pwd)){
+            UserModel.getInstance().updatePwd(username, passphrase);
             return true;
         }
         return false;
+    }
+
+    @RequestMapping(value = "/plan/{userId}", params = {"password"})
+    @ResponseBody
+    public Plan[] requestUserPlan(@PathVariable String userId, @RequestParam("password") String password){
+        return PlanModel.getInstance().getPlan(UserModel.getInstance().getAccountById(userId));
+    }
+
+    @RequestMapping(value = "/plan/{userId}/{cloud}", params = {"password"})
+    @ResponseBody
+    public Plan[] requestCloudPlan(@PathVariable String userId, @RequestParam("password") String password, @PathVariable String cloud){
+        return PlanModel.getInstance().getAllPlan(UserModel.getInstance().getAccountById(userId), cloud);
+    }
+
+    @RequestMapping(value = "/update/plan/{userId}/{cloud}", params = {"password", "ip", "plan"})
+    @ResponseBody
+    public boolean updatePlan(@PathVariable String userId, @PathVariable String cloud, @RequestParam ("password") String password, @RequestParam("ip") String ip, @RequestParam("plan") int plan){
+        return PlanModel.getInstance().updatePlan(UserModel.getInstance().getAccountById(userId), cloud, plan);
     }
 
 }
