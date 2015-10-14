@@ -3,14 +3,14 @@ package th.ac.kmitl.ce.ooad;
 /**
  * Created by Nut on 10/12/2015.
  */
-public class UserController {
-    private static UserController user_controller = new UserController();
+public class UserModel {
+    private static UserModel user_controller = new UserModel();
     private static UserRepository userRepository;
-    private UserController(){
+    private UserModel(){
         userRepository = new UserRepository();
     }
 
-    public static UserController getInstance(){
+    public static UserModel getInstance(){
         return user_controller;
     }
 
