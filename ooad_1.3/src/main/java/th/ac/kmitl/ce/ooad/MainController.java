@@ -57,7 +57,7 @@ public class MainController {
     @RequestMapping(value = "/plan/{userId}/{cloud}", params = {"password"})
     @ResponseBody
     public Plan[] requestCloudPlan(@PathVariable String userId, @RequestParam("password") String password, @PathVariable String cloud){
-        return PlanModel.getInstance().getAllPlan(cloud);
+        return PlanModel.getInstance().getAllPlan(UserModel.getInstance().getAccountById(userId), cloud);
     }
 
     @RequestMapping(value = "/update/plan/{userId}/{cloud}", params = {"password", "ip", "plan"})
