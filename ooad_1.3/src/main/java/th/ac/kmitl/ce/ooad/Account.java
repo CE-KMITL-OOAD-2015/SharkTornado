@@ -9,22 +9,21 @@ import java.util.List;
  * Created by Nut on 10/12/2015.
  */
 public class Account {
-    private Profile profile;
     @Id
     private String userId;
+
+    private Profile profile;
     private String username, password;
     private List<CloudAccount> cloudAccounts;
-    private List<Cloud> clouds;
 
     public Account() {
     }
 
-    public Account(Profile profile, String username, String password, String userId) {
+    public Account(Profile profile, String username, String password) {
         this.profile = profile;
         this.username = username;
         this.password = password;
-        this.clouds = new ArrayList<>();
-        this.userId = userId;
+        cloudAccounts = new ArrayList<>();
     }
 
     public Profile getProfile() {
@@ -66,24 +65,12 @@ public class Account {
         return userId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
     public List<CloudAccount> getCloudAccounts() {
         return cloudAccounts;
     }
 
     public void setCloudAccounts(List<CloudAccount> cloudAccounts) {
         this.cloudAccounts = cloudAccounts;
-    }
-
-    public List<Cloud> getClouds() {
-        return clouds;
-    }
-
-    public void setClouds(List<Cloud> clouds) {
-        this.clouds = clouds;
     }
 
     @Override

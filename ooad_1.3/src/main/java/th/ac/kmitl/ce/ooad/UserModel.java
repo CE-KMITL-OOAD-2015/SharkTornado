@@ -7,7 +7,7 @@ import java.util.UUID;
  */
 public class UserModel {
     private static UserModel user_controller = new UserModel();
-    @Autowired private static AccountRepository accountRepository;
+    @Autowired private AccountRepository accountRepository;
     private UserModel(){
     }
 
@@ -15,26 +15,19 @@ public class UserModel {
         return user_controller;
     }
 
-    protected static boolean addUser(String username, String password, String name, String email, String imgLoc){
+    protected boolean addUser(String username, String password, String name, String email, String imgLoc){
         Profile profile = new Profile(email, name, imgLoc);
-        Account account = new Account(profile, username, password, UUID.randomUUID().toString());
-        try {
-            Account temp = accountRepository.findByUsername(username);
-            System.out.println("Found user: " + temp.getUsername());
-            return false;
-        }
-        catch (Exception e){
+        Account account = new Account(profile, username, password);
             accountRepository.save(account);
             return true;
-        }
     }
 
-    protected static boolean isExist(String username){
+    protected boolean isExist(String username){
         if(accountRepository.findByUsername(username) != null) return true;
         return false;
     }
 
-    protected static boolean authenUser(String username, String password){
+    protected boolean authenUser(String username, String password){
         if(isExist(username)){
             String tmp_pwd = accountRepository.findByUsername(username).getPassword();
             if(password.equals(tmp_pwd)) return true;
@@ -42,7 +35,7 @@ public class UserModel {
         return false;
     }
 
-    protected static boolean updatePwd(String username, String password){
+    protected boolean updatePwd(String username, String password){
         if(authenUser(username, password)) {
             Account temp = accountRepository.findByUsername(username);
             temp.setPassword(password);
@@ -52,7 +45,7 @@ public class UserModel {
         return false;
     }
 
-    protected static boolean updateName(String username, String newName){
+    protected boolean updateName(String username, String newName){
         if(isExist(username)) {
             Account temp = accountRepository.findByUsername(username);
             Profile pro_temp = temp.getProfile();
@@ -64,15 +57,15 @@ public class UserModel {
         return false;
     }
 
-    private static String getUserById(String userId){
+    private String getUserById(String userId){
         return accountRepository.findByUserId(userId).getUsername();
     }
 
-    protected static Account getAccountById(String userId){
+    protected Account getAccountById(String userId){
         return accountRepository.findByUserId(userId);
     }
 
-    protected static boolean addCloudAccount(String userId, String password, int cloudProv, String cloudUsername, String cloudPassword){
+    protected boolean addCloudAccount(String userId, String password, int cloudProv, String cloudUsername, String cloudPassword){
 
         if(authenUser(getUserById(userId), password)){
             CloudProvider cloudProvider;
