@@ -1,5 +1,7 @@
 package th.ac.kmitl.ce.ooad;
 
+import org.springframework.data.annotation.Id;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +9,11 @@ import java.util.List;
  * Created by Nut on 10/12/2015.
  */
 public class Account {
+    @Id
+    private String userId;
+
     private Profile profile;
-    private String username, passphrase, userId;
+    private String username, passphrase;
     private List<CloudAccount> clouds;
 
     public Account() {
