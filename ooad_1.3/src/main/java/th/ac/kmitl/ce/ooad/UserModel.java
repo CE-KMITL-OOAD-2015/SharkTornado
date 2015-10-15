@@ -33,7 +33,7 @@ public class UserModel {
     }
 
     protected static boolean updatePwd(String usrname, String passphrase){
-        if(isExist(usrname)) {
+        if(authenUser(usrname, passphrase)) {
             userRepository.updatePasswd(userRepository.getUserById(usrname), passphrase);
             return true;
         }
@@ -54,5 +54,23 @@ public class UserModel {
 
     protected static Account getAccountById(String userId){
         return userRepository.getAccountById(userId);
+    }
+
+    protected static boolean addCloudAccount(String userId, String password, int cloudProv, String cloudUsername, String cloudPassword){
+
+        if(authenUser(getUserById(userId), password)){
+            CloudProvider cloudProvider;
+            switch (cloudProv){
+                case 0 : cloudProvider = CloudProvider.GOOGLE; break;
+                case 1 : cloudProvider = CloudProvider.AMAZON; break;
+                case 2 : cloudProvider = CloudProvider.AZURE; break;
+                case 3 : cloudProvider = CloudProvider.DIGITAL_OCEAN; break;
+                case 4 : cloudProvider = CloudProvider.VMWARE; break;
+                default : cloudProvider = CloudProvider.UNKNOWN; break;
+            }
+            CloudAccount temp = new CloudAccount(cloudProvider, getUserById(userId), password);
+            getAccountById(userId).addCloud(temp);
+        }
+        return false;
     }
 }

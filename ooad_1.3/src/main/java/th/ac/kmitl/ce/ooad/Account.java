@@ -9,7 +9,8 @@ import java.util.List;
 public class Account {
     private Profile profile;
     private String username, passphrase, userId;
-    private List<CloudAccount> clouds;
+    private List<CloudAccount> cloudAccounts;
+    private List<Cloud> clouds;
 
     public Account() {
     }
@@ -27,12 +28,15 @@ public class Account {
 
     }
 
-    public List<CloudAccount> getClouds() {
-        return clouds;
+    public CloudAccount getCloudAccounts(CloudProvider cloudProvider) {
+        for(CloudAccount temp : cloudAccounts){
+            if (temp.getCloudProv() == cloudProvider) return temp;
+        }
+        return null;
     }
 
     public void addCloud(CloudAccount cloud){
-        clouds.add(cloud);
+        cloudAccounts.add(cloud);
     }
 
     public void setProfile(Profile profile) {

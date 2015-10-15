@@ -1,5 +1,7 @@
 package th.ac.kmitl.ce.ooad;
 
+import java.util.HashMap;
+
 /**
  * Created by kohpai on 10/15/15.
  */

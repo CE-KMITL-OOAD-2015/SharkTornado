@@ -5,12 +5,14 @@ package th.ac.kmitl.ce.ooad;
  */
 public class Plan {
     public CloudProvider cloudProv;
+    public String ip;
     public float monthlyRate, cpu, mem, network;
     public int storage;
 
-    public Plan(CloudProvider cloudProv, float monthlyRate,
+    public Plan(CloudProvider cloudProv, String ip, float monthlyRate,
                 float cpu, float mem, float network, int storage) {
         this.cloudProv = cloudProv;
+        this.ip = ip;
         this.monthlyRate = monthlyRate;
         this.cpu = cpu;
         this.mem = mem;

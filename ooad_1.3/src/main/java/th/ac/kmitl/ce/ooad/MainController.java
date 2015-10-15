@@ -9,13 +9,13 @@ public class MainController {
 
     @RequestMapping(value = "/addUser/{username}/{name}", params = {"email", "password", "imgLocation"})
     @ResponseBody
-    public boolean addUser(@PathVariable String username,@RequestParam("password") String passphrase,
+    public String addUser(@PathVariable String username,@RequestParam("password") String passphrase,
                            @PathVariable String name, @RequestParam("email") String email, @RequestParam("imgLocation") String imgLoc){
         System.out.println("Add " + username);
         String tmp = UserModel.getInstance().addUser(username, passphrase, name, email, imgLoc);
         if(tmp != null)System.out.println("Add " + username + " successfully.");
         else System.out.println("Add " + username + " not successfully.");
-        return tmp != null;
+        return tmp;
     }
 
     @RequestMapping(value = "/login/{username}", params = "password")
@@ -48,22 +48,28 @@ public class MainController {
         return false;
     }
 
-    @RequestMapping(value = "/plan/{userId}", params = {"password"})
+    @RequestMapping(value = "/plan/{userId}", params = {"password", "cloudProv"})
     @ResponseBody
-    public Plan[] requestUserPlan(@PathVariable String userId, @RequestParam("password") String password){
-        return PlanModel.getInstance().getPlan(UserModel.getInstance().getAccountById(userId));
+    public Plan[] requestUserPlan(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("cloudProv") int cloudProv){
+        return PlanModel.getInstance().getUserPlanByCloud(UserModel.getInstance().getAccountById(userId), cloudProv);
     }
 
-    @RequestMapping(value = "/plan/{userId}/{cloud}", params = {"password"})
+    @RequestMapping(value = "/plan/", params = "clouProv")
     @ResponseBody
-    public Plan[] requestCloudPlan(@PathVariable String userId, @RequestParam("password") String password, @PathVariable String cloud){
-        return PlanModel.getInstance().getAllPlan(UserModel.getInstance().getAccountById(userId), cloud);
+    public Plan[] requestCloudPlan(@PathVariable("cloudProv") int cloudProv){
+        return PlanModel.getInstance().getAllProviderPlan(cloudProv);
     }
 
-    @RequestMapping(value = "/update/plan/{userId}/{cloud}", params = {"password", "ip", "plan"})
+    @RequestMapping(value = "/update/plan/{userId}", params = {"password", "ip", "plan", "cloudProv"})
     @ResponseBody
-    public boolean updatePlan(@PathVariable String userId, @PathVariable String cloud, @RequestParam ("password") String password, @RequestParam("ip") String ip, @RequestParam("plan") int plan){
-        return PlanModel.getInstance().updatePlan(UserModel.getInstance().getAccountById(userId), cloud, plan);
+    public boolean updatePlan(@PathVariable String userId, @RequestParam("cloudProv") int cloudProv, @RequestParam ("password") String password, @RequestParam("ip") String ip, @RequestParam("plan") int plan){
+        return PlanModel.getInstance().updatePlan(UserModel.getInstance().getAccountById(userId), cloudProv, plan);
+    }
+
+    @RequestMapping(value = "/plan/addCloudAccount/{userId}", params = {"cloudProv", "password", "cloudUsername", "cloudPassword"})
+    @ResponseBody
+    public boolean addCloudAccount(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("cloudUsername") String cloudUsername, @RequestParam("cloudPassword") String cloudPassword, @RequestParam("cloudProv") int cloudProv){
+        return false;
     }
 
 }

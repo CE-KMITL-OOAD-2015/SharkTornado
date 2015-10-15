@@ -14,12 +14,13 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
 import static com.mongodb.client.model.Filters.eq;
-
+import java.util.HashMap;
 public class UserRepository {
     MongoClient mongoClient;
     MongoDatabase db;
-    boolean exist = false;
+    private boolean exist = false;
     private String stemp = "";
+    private Profile profile;
     public UserRepository(){
         mongoClient = new MongoClient();
         db = mongoClient.getDatabase("UserRepository");
@@ -118,6 +119,18 @@ public class UserRepository {
     }
 
     protected Account getAccountById(String userId){
-        return new Account();
+        FindIterable<Document> cursor = db.getCollection("Users").find(new Document("userId", userId));
+        cursor.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                String email = document.getString("email");
+                String name = document.getString("name");
+                String imgLoc = document.getString("imgLoc");
+                profile = new Profile(email, name, imgLoc);
+            }
+        });
+        String username = getUserById(userId);
+        String password = getUserPass(username);
+        return new Account(profile, username, password, userId);
     }
 }
