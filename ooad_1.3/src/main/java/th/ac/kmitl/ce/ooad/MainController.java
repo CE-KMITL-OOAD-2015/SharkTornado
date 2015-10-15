@@ -9,13 +9,16 @@ public class MainController {
 
     @RequestMapping(value = "/addUser/{username}/{name}", params = {"email", "password", "imgLocation"})
     @ResponseBody
-    public String addUser(@PathVariable String username,@RequestParam("password") String passphrase,
+    public boolean addUser(@PathVariable String username,@RequestParam("password") String passphrase,
                            @PathVariable String name, @RequestParam("email") String email, @RequestParam("imgLocation") String imgLoc){
         System.out.println("Add " + username);
-        String tmp = UserModel.getInstance().addUser(username, passphrase, name, email, imgLoc);
-        if(tmp != null)System.out.println("Add " + username + " successfully.");
-        else System.out.println("Add " + username + " not successfully.");
-        return tmp;
+        try {
+            return UserModel.getInstance().addUser(username, passphrase, name, email, imgLoc);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error occurs");
+            return false;
+        }
     }
 
     @RequestMapping(value = "/login/{username}", params = "password")

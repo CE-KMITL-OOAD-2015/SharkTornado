@@ -1,5 +1,7 @@
 package th.ac.kmitl.ce.ooad;
 
+import org.springframework.data.annotation.Id;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,17 +10,19 @@ import java.util.List;
  */
 public class Account {
     private Profile profile;
-    private String username, passphrase, userId;
+    @Id
+    private String userId;
+    private String username, password;
     private List<CloudAccount> cloudAccounts;
     private List<Cloud> clouds;
 
     public Account() {
     }
 
-    public Account(Profile profile, String username, String passphrase, String userId) {
+    public Account(Profile profile, String username, String password, String userId) {
         this.profile = profile;
         this.username = username;
-        this.passphrase = passphrase;
+        this.password = password;
         this.clouds = new ArrayList<>();
         this.userId = userId;
     }
@@ -51,12 +55,12 @@ public class Account {
         this.username = username;
     }
 
-    public String getPassphrase() {
-        return passphrase;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassphrase(String passphrase) {
-        this.passphrase = passphrase;
+    public void setPassword(String password) {
+        this.password = password;
     }
     public String getUserId() {
         return userId;
@@ -64,6 +68,22 @@ public class Account {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public List<CloudAccount> getCloudAccounts() {
+        return cloudAccounts;
+    }
+
+    public void setCloudAccounts(List<CloudAccount> cloudAccounts) {
+        this.cloudAccounts = cloudAccounts;
+    }
+
+    public List<Cloud> getClouds() {
+        return clouds;
+    }
+
+    public void setClouds(List<Cloud> clouds) {
+        this.clouds = clouds;
     }
 
     @Override

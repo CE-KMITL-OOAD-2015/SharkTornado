@@ -14,7 +14,6 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
 import static com.mongodb.client.model.Filters.eq;
-import java.util.HashMap;
 public class UserRepository {
     MongoClient mongoClient;
     MongoDatabase db;
@@ -31,7 +30,7 @@ public class UserRepository {
         if(!isExist(newAccount.getUsername())){
             userId = UUID.randomUUID().toString();
             Document data = new Document("usrname", newAccount.getUsername())
-                    .append("pwd", newAccount.getPassphrase())
+                    .append("pwd", newAccount.getPassword())
                     .append("name", newAccount.getProfile().name)
                     .append("email", newAccount.getProfile().email)
                     .append("imgLoc", newAccount.getProfile().imgLoc)
