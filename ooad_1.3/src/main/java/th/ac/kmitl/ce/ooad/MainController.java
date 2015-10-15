@@ -54,9 +54,9 @@ public class MainController {
         return PlanModel.getInstance().getUserPlanByCloud(UserModel.getInstance().getAccountById(userId), cloudProv);
     }
 
-    @RequestMapping(value = "/plan/", params = "clouProv")
+    @RequestMapping(value = "/plan", params = "cloudProv")
     @ResponseBody
-    public Plan[] requestCloudPlan(@PathVariable("cloudProv") int cloudProv){
+    public Plan[] requestCloudPlan(@RequestParam("cloudProv") int cloudProv){
         return PlanModel.getInstance().getAllProviderPlan(cloudProv);
     }
 
