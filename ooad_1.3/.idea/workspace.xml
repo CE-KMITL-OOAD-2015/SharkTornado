@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eea79d81-33d8-4ab2-86e2-1850b04f1a4e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/th/ac/kmitl/ce/ooad/CloudAccount.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/th/ac/kmitl/ce/ooad/CloudProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/th/ac/kmitl/ce/ooad/vmProvider.java" afterPath="$PROJECT_DIR$/src/main/java/th/ac/kmitl/ce/ooad/vmProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="eea79d81-33d8-4ab2-86e2-1850b04f1a4e" name="Default" comment="" />
     <ignored path="ooad_1.3.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -98,12 +93,11 @@
       <file leaf-file-name="vmProvider.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/th/ac/kmitl/ce/ooad/vmProvider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3516295">
-              <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.135506">
+              <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
               <folding>
                 <element signature="e#255#256#0" expanded="true" />
                 <element signature="e#288#289#0" expanded="true" />
-                <element signature="e#446#447#0" expanded="true" />
                 <element signature="e#480#481#0" expanded="true" />
               </folding>
             </state>
@@ -1164,7 +1158,7 @@
       <workItem from="1444802502561" duration="517000" />
       <workItem from="1444803236295" duration="3859000" />
       <workItem from="1444849252782" duration="4129000" />
-      <workItem from="1444904454041" duration="4629000" />
+      <workItem from="1444904454041" duration="4781000" />
     </task>
     <task id="LOCAL-00001" summary="local changes&#10;">
       <created>1444803258931</created>
@@ -1220,14 +1214,20 @@
       <option name="project" value="LOCAL" />
       <updated>1444905629409</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add CloudAccount">
+      <created>1444909123679</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1444909123679</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52969000" />
+    <option name="totallyTimeSpent" value="53121000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1366" height="741" extended-state="0" />
+    <frame x="0" y="27" width="1366" height="741" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1303,7 +1303,8 @@
     <MESSAGE value="local changes&#10;" />
     <MESSAGE value="plan ขั้นต้นเสร็จแล้ว" />
     <MESSAGE value="test commit from archie" />
-    <option name="LAST_COMMIT_MESSAGE" value="test commit from archie" />
+    <MESSAGE value="add CloudAccount" />
+    <option name="LAST_COMMIT_MESSAGE" value="add CloudAccount" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1712,12 +1713,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/th/ac/kmitl/ce/ooad/vmProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3516295">
-          <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.135506">
+          <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
           <folding>
             <element signature="e#255#256#0" expanded="true" />
             <element signature="e#288#289#0" expanded="true" />
-            <element signature="e#446#447#0" expanded="true" />
             <element signature="e#480#481#0" expanded="true" />
           </folding>
         </state>
