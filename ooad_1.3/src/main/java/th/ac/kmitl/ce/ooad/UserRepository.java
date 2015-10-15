@@ -130,6 +130,6 @@ public class UserRepository {
         });
         String username = getUserById(userId);
         String password = getUserPass(username);
-        return new Account(profile, username, password, userId);
+        return new Account(profile, username, password);
     }
 }

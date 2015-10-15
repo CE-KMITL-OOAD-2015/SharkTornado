@@ -1,13 +1,12 @@
 package th.ac.kmitl.ce.ooad;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import java.util.UUID;
 /**
  * Created by Nut on 10/12/2015.
  */
 public class UserModel {
+
     private static UserModel user_controller = new UserModel();
-    @Autowired private AccountRepository accountRepository;
+    private AccountRepository accountRepository;
     private UserModel(){
     }
 
@@ -15,11 +14,15 @@ public class UserModel {
         return user_controller;
     }
 
+    protected void setAccountRepository(AccountRepository accountRepository){
+        this.accountRepository = accountRepository;
+    }
+
     protected boolean addUser(String username, String password, String name, String email, String imgLoc){
         Profile profile = new Profile(email, name, imgLoc);
         Account account = new Account(profile, username, password);
-            accountRepository.save(account);
-            return true;
+        accountRepository.save(account);
+        return true;
     }
 
     protected boolean isExist(String username){

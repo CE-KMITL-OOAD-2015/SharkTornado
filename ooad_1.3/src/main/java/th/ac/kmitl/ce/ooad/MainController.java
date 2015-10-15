@@ -1,5 +1,6 @@
 package th.ac.kmitl.ce.ooad;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 /**
  * Created by Nut on 10/4/2015.
@@ -7,11 +8,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class MainController {
 
+    @Autowired
+    private AccountRepository accountRepository;
+
     @RequestMapping(value = "/addUser/{username}/{name}", params = {"email", "password", "imgLocation"})
     @ResponseBody
     public boolean addUser(@PathVariable String username,@RequestParam("password") String passphrase,
                            @PathVariable String name, @RequestParam("email") String email, @RequestParam("imgLocation") String imgLoc){
         System.out.println("Add " + username);
+        UserModel.getInstance().setAccountRepository(accountRepository);
         try {
             return UserModel.getInstance().addUser(username, passphrase, name, email, imgLoc);
         } catch (Exception e) {
