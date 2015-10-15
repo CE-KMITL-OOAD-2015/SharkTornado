@@ -15,8 +15,14 @@ public class Account {
     private Profile profile;
     private String username, password;
     private List<CloudAccount> cloudAccounts;
+//    private CloudAccount cloudAccount;
+
+    public List<CloudAccount> getCloudAccounts() {
+        return cloudAccounts;
+    }
 
     public Account() {
+
     }
 
     public Account(Profile profile, String username, String password) {
@@ -25,6 +31,14 @@ public class Account {
         this.password = password;
         cloudAccounts = new ArrayList<>();
     }
+
+
+//    public Account(Profile profile, String username, String password) {
+//        this.profile = profile;
+//        this.username = username;
+//        this.password = password;
+//        this.cloudAccount = new CloudAccount();
+//    }
 
     public Profile getProfile() {
         return profile;
@@ -40,6 +54,7 @@ public class Account {
 
     public void addCloud(CloudAccount cloud){
         cloudAccounts.add(cloud);
+        System.out.println(cloudAccounts.get(0).toString());
     }
 
     public void setProfile(Profile profile) {
@@ -65,16 +80,9 @@ public class Account {
         return userId;
     }
 
-    public List<CloudAccount> getCloudAccounts() {
-        return cloudAccounts;
-    }
-
-    public void setCloudAccounts(List<CloudAccount> cloudAccounts) {
-        this.cloudAccounts = cloudAccounts;
-    }
-
     @Override
     public String toString(){
-        return String.format("Account[userId=%s, username=%s] Profile[%s]", userId, username, profile.toString());
+        return String.format("Account[userId=%s, username=%s] Profile[%s] CloudAccount[\n%s]",
+                userId, username, profile.toString(), cloudAccounts.get(0).toString());
     }
 }

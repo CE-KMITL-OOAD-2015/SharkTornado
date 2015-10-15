@@ -16,7 +16,6 @@ public class MainController {
     public boolean addUser(@PathVariable String username,@RequestParam("password") String passphrase,
                            @PathVariable String name, @RequestParam("email") String email, @RequestParam("imgLocation") String imgLoc){
         System.out.println("Add " + username);
-        UserModel.getInstance().setAccountRepository(accountRepository);
         try {
             return UserModel.getInstance().addUser(username, passphrase, name, email, imgLoc);
         } catch (Exception e) {
@@ -24,6 +23,12 @@ public class MainController {
             System.out.println("Error occurs");
             return false;
         }
+    }
+
+    @RequestMapping("/")
+    @ResponseBody
+    public void init(){
+        UserModel.getInstance().setAccountRepository(accountRepository);
     }
 
     @RequestMapping(value = "/login/{username}", params = "password")
@@ -40,20 +45,13 @@ public class MainController {
 
     @RequestMapping(value = "/update/name/{username}", params = {"name", "password"})
     public boolean updateName(@PathVariable String username, @RequestParam("name") String name, @RequestParam("password") String pwd){
-        if(UserModel.getInstance().authenUser(username, pwd)){
-            UserModel.getInstance().updateName(username, name);
-        }
-        return false;
+        return UserModel.getInstance().updateName(username, name);
     }
 
     @RequestMapping(value = "/update/password/{username}", params = {"password", "newpassword"})
     @ResponseBody
-    public boolean updatePwd(@PathVariable String username, @RequestParam("password") String pwd, @RequestParam("newpassword") String passphrase){
-        if(UserModel.getInstance().authenUser(username, pwd)){
-            UserModel.getInstance().updatePwd(username, passphrase);
-            return true;
-        }
-        return false;
+    public boolean updatePwd(@PathVariable String username, @RequestParam("password") String password, @RequestParam("newpassword") String newpassword){
+        return UserModel.getInstance().updatePwd(username, password, newpassword);
     }
 
     @RequestMapping(value = "/plan/{userId}", params = {"password", "cloudProv"})
@@ -77,7 +75,7 @@ public class MainController {
     @RequestMapping(value = "/plan/addCloudAccount/{userId}", params = {"cloudProv", "password", "cloudUsername", "cloudPassword"})
     @ResponseBody
     public boolean addCloudAccount(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("cloudUsername") String cloudUsername, @RequestParam("cloudPassword") String cloudPassword, @RequestParam("cloudProv") int cloudProv){
-        return false;
+        return UserModel.getInstance().addCloudAccount(userId, password, cloudProv, cloudUsername, cloudPassword);
     }
 
 }

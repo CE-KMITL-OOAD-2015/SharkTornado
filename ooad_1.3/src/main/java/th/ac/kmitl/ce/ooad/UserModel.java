@@ -38,15 +38,21 @@ public class UserModel {
         return false;
     }
 
-    protected boolean updatePwd(String username, String password){
+    protected boolean updatePwd(String username, String password, String newpassword){
         if(authenUser(username, password)) {
             Account temp = accountRepository.findByUsername(username);
-            temp.setPassword(password);
+            System.out.println(temp.toString());
+            temp.setPassword(newpassword);
+            System.out.println(temp.toString());
             accountRepository.save(temp);
             return true;
         }
-        return false;
+        else {
+            System.out.println("Authen failed. username " + username + " password " + password);
+            return false;
+        }
     }
+
 
     protected boolean updateName(String username, String newName){
         if(isExist(username)) {
@@ -68,21 +74,41 @@ public class UserModel {
         return accountRepository.findByUserId(userId);
     }
 
-    protected boolean addCloudAccount(String userId, String password, int cloudProv, String cloudUsername, String cloudPassword){
+    protected boolean addCloudAccount(String userId, String password, int cloudProv, String cloudUsername, String cloudPassword) {
 
-        if(authenUser(getUserById(userId), password)){
+        if (authenUser(getUserById(userId), password)) {
             CloudProvider cloudProvider;
-            switch (cloudProv){
-                case 0 : cloudProvider = CloudProvider.GOOGLE; break;
-                case 1 : cloudProvider = CloudProvider.AMAZON; break;
-                case 2 : cloudProvider = CloudProvider.AZURE; break;
-                case 3 : cloudProvider = CloudProvider.DIGITAL_OCEAN; break;
-                case 4 : cloudProvider = CloudProvider.VMWARE; break;
-                default : cloudProvider = CloudProvider.UNKNOWN; break;
+            switch (cloudProv) {
+                case 0:
+                    cloudProvider = CloudProvider.GOOGLE;
+                    break;
+                case 1:
+                    cloudProvider = CloudProvider.AMAZON;
+                    break;
+                case 2:
+                    cloudProvider = CloudProvider.AZURE;
+                    break;
+                case 3:
+                    cloudProvider = CloudProvider.DIGITAL_OCEAN;
+                    break;
+                case 4:
+                    cloudProvider = CloudProvider.VMWARE;
+                    break;
+                default:
+                    cloudProvider = CloudProvider.UNKNOWN;
+                    break;
             }
-            CloudAccount temp = new CloudAccount(cloudProvider, getUserById(userId), password);
-            getAccountById(userId).addCloud(temp);
+            CloudAccount temp = new CloudAccount(cloudProvider, cloudUsername, cloudPassword);
+            System.out.println(temp.toString());
+            Account account_tmp = accountRepository.findByUserId(userId);
+            account_tmp.addCloud(temp);
+            System.out.println(account_tmp.toString());
+            System.out.println(getUserById(userId));
+            accountRepository.save(account_tmp);
+            return true;
+        } else {
+            System.out.println("Authen failed.");
+            return false;
         }
-        return false;
     }
 }

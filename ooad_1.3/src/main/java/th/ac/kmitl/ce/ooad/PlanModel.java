@@ -1,5 +1,8 @@
 package th.ac.kmitl.ce.ooad;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Nut on 10/12/2015.
  */
@@ -13,7 +16,7 @@ public class PlanModel {
         return plan_controller;
     }
 
-    protected static Plan[] getUserPlanByCloud(Account user, int cloudProv){
+    protected Plan[] getUserPlanByCloud(Account user, int cloudProv){
         CloudProvider cloudProvider;
         switch (cloudProv){
             case 0 : cloudProvider = CloudProvider.GOOGLE; break;
@@ -26,7 +29,19 @@ public class PlanModel {
         return vmProvider.getInstance().getPlanByCloudAccount(user.getCloudAccounts(cloudProvider));
     }
 
-    protected static Plan[] getAllProviderPlan(int cloudProv) {
+    protected List<Plan> getPlan(Account user){
+//        List<CloudAccount> cloudAccountList = user.getCloudAccounts();
+//        List<Plan> plans = new ArrayList<>();
+//        for(CloudAccount cloudAccount : cloudAccountList){
+//            Plan[] plans_tmp = vmProvider.getInstance().getPlanByCloudAccount(cloudAccount);
+//            for(int i = 0; i < plans_tmp.length; i++){
+//                plans.add(plans_tmp[i]);
+//            }
+//        }
+        return null;
+    }
+
+    protected Plan[] getAllProviderPlan(int cloudProv) {
         CloudProvider cloudProvider;
         switch (cloudProv){
             case 0 : cloudProvider = CloudProvider.GOOGLE; break;
