@@ -6,6 +6,7 @@ package th.ac.kmitl.ce.ooad;
 public class vmProvider implements Provider {
 
     private static vmProvider vmprovider = new vmProvider();
+
     private vmProvider(){
     }
 
@@ -21,6 +22,27 @@ public class vmProvider implements Provider {
     @Override
     public Plan[] getPlanByUser(Account user) {
         return new Plan[0];
+    }
+
+    public Plan[] getPlanByCloudAccount(CloudAccount account) {
+        switch (account.getCloudProv()) {
+            case GOOGLE:
+                genPlan();
+
+                break;
+
+            case AMAZON:
+                break;
+
+            case DIGITAL_OCEAN:
+                break;
+
+            case AZURE:
+                break;
+
+            case VMWARE:
+                break;
+        }
     }
 
     @Override
