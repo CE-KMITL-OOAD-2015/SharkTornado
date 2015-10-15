@@ -9,11 +9,7 @@ import java.util.List;
 public class Account {
     private Profile profile;
     private String username, passphrase, userId;
-<<<<<<< HEAD
-    private List<Cloud> clouds;
-=======
     private List<CloudAccount> clouds;
->>>>>>> winut's
 
     public Account() {
     }
@@ -31,19 +27,11 @@ public class Account {
 
     }
 
-<<<<<<< HEAD
-    public List<Cloud> getClouds() {
-        return clouds;
-    }
-
-    public void addCloud(Cloud cloud){
-=======
     public List<CloudAccount> getClouds() {
         return clouds;
     }
 
     public void addCloud(CloudAccount cloud){
->>>>>>> winut's
         clouds.add(cloud);
     }
 

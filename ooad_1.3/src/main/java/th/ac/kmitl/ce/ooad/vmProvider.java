@@ -6,10 +6,6 @@ package th.ac.kmitl.ce.ooad;
 public class vmProvider implements Provider {
 
     private static vmProvider vmprovider = new vmProvider();
-<<<<<<< HEAD
-=======
-
->>>>>>> winut's
     private vmProvider(){
     }
 
@@ -24,9 +20,6 @@ public class vmProvider implements Provider {
 
     @Override
     public Plan[] getPlanByUser(Account user) {
-<<<<<<< HEAD
-        return new Plan[0];
-=======
         return getPlanByCloudAccount(user.getClouds().get(0));
     }
 
@@ -63,7 +56,6 @@ public class vmProvider implements Provider {
         }
 
         return plans;
->>>>>>> winut's
     }
 
     @Override
