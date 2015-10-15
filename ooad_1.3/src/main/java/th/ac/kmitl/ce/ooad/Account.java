@@ -9,7 +9,7 @@ import java.util.List;
 public class Account {
     private Profile profile;
     private String username, passphrase, userId;
-    private List<Cloud> clouds;
+    private List<CloudAccount> clouds;
 
     public Account() {
     }
@@ -27,11 +27,11 @@ public class Account {
 
     }
 
-    public List<Cloud> getClouds() {
+    public List<CloudAccount> getClouds() {
         return clouds;
     }
 
-    public void addCloud(Cloud cloud){
+    public void addCloud(CloudAccount cloud){
         clouds.add(cloud);
     }
 
