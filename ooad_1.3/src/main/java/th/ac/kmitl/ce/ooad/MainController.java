@@ -54,6 +54,12 @@ public class MainController {
         return UserModel.getInstance().updatePwd(username, password, newpassword);
     }
 
+    @RequestMapping(value = "/update/plan/{userId}", params = {"password", "ip", "plan", "cloudProv"})
+    @ResponseBody
+    public boolean updatePlan(@PathVariable String userId, @RequestParam("cloudProv") int cloudProv, @RequestParam ("password") String password, @RequestParam("ip") String ip, @RequestParam("plan") int plan){
+        return PlanModel.getInstance().updatePlan(UserModel.getInstance().getAccountById(userId), cloudProv, plan);
+    }
+
     @RequestMapping(value = "/plan/{userId}", params = {"password", "cloudProv"})
     @ResponseBody
     public Plan[] requestUserPlan(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("cloudProv") int cloudProv){
@@ -66,10 +72,10 @@ public class MainController {
         return PlanModel.getInstance().getAllProviderPlan(cloudProv);
     }
 
-    @RequestMapping(value = "/update/plan/{userId}", params = {"password", "ip", "plan", "cloudProv"})
+    @RequestMapping(value = "/plan/removeCloudAccount/{userId}", params = {"password", "cloudProv"})
     @ResponseBody
-    public boolean updatePlan(@PathVariable String userId, @RequestParam("cloudProv") int cloudProv, @RequestParam ("password") String password, @RequestParam("ip") String ip, @RequestParam("plan") int plan){
-        return PlanModel.getInstance().updatePlan(UserModel.getInstance().getAccountById(userId), cloudProv, plan);
+    public boolean removeCloudAccount(@RequestParam("cloudProv") int cloudProv, @RequestParam("password") String password){
+        return false;
     }
 
     @RequestMapping(value = "/plan/addCloudAccount/{userId}", params = {"cloudProv", "password", "cloudUsername", "cloudPassword"})

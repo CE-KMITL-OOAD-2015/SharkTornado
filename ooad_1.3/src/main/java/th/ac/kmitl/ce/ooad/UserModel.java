@@ -111,4 +111,6 @@ public class UserModel {
             return false;
         }
     }
+
+    protected boolean removeCloudAccount(String userId, )
 }

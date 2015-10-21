@@ -16,42 +16,12 @@ public class PlanModel {
         return plan_controller;
     }
 
-    protected Plan[] getUserPlanByCloud(Account user, int cloudProv){
-        CloudProvider cloudProvider;
-        switch (cloudProv){
-            case 0 : cloudProvider = CloudProvider.GOOGLE; break;
-            case 1 : cloudProvider = CloudProvider.AMAZON; break;
-            case 2 : cloudProvider = CloudProvider.AZURE; break;
-            case 3 : cloudProvider = CloudProvider.DIGITAL_OCEAN; break;
-            case 4 : cloudProvider = CloudProvider.VMWARE; break;
-            default : cloudProvider = CloudProvider.UNKNOWN; break;
-        }
-        return vmProvider.getInstance().getPlanByCloudAccount(user.getCloudAccounts(cloudProvider));
+    protected static Plan[] getUserPlanByCloud(Account user, int cloudProv){
+        return vmProvider.getInstance().getPlanByCloudAccount(user.getCloudAccounts(CloudProvider.toEnum(cloudProv)));
     }
 
-    protected List<Plan> getPlan(Account user){
-//        List<CloudAccount> cloudAccountList = user.getCloudAccounts();
-//        List<Plan> plans = new ArrayList<>();
-//        for(CloudAccount cloudAccount : cloudAccountList){
-//            Plan[] plans_tmp = vmProvider.getInstance().getPlanByCloudAccount(cloudAccount);
-//            for(int i = 0; i < plans_tmp.length; i++){
-//                plans.add(plans_tmp[i]);
-//            }
-//        }
-        return null;
-    }
-
-    protected Plan[] getAllProviderPlan(int cloudProv) {
-        CloudProvider cloudProvider;
-        switch (cloudProv){
-            case 0 : cloudProvider = CloudProvider.GOOGLE; break;
-            case 1 : cloudProvider = CloudProvider.AMAZON; break;
-            case 2 : cloudProvider = CloudProvider.AZURE; break;
-            case 3 : cloudProvider = CloudProvider.DIGITAL_OCEAN; break;
-            case 4 : cloudProvider = CloudProvider.VMWARE; break;
-            default : cloudProvider = CloudProvider.UNKNOWN; break;
-        }
-        return vmProvider.getInstance().getPlanByCloudProv(cloudProvider);
+    protected static Plan[] getAllProviderPlan(int cloudProv) {
+        return vmProvider.getInstance().getPlanByCloudProv(CloudProvider.toEnum(cloudProv));
     }
 
     protected boolean updatePlan(Account user, int cloudProv, int plan) {
