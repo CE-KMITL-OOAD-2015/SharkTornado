@@ -14,29 +14,11 @@ public class PlanModel {
     }
 
     protected static Plan[] getUserPlanByCloud(Account user, int cloudProv){
-        CloudProvider cloudProvider;
-        switch (cloudProv){
-            case 0 : cloudProvider = CloudProvider.GOOGLE; break;
-            case 1 : cloudProvider = CloudProvider.AMAZON; break;
-            case 2 : cloudProvider = CloudProvider.AZURE; break;
-            case 3 : cloudProvider = CloudProvider.DIGITAL_OCEAN; break;
-            case 4 : cloudProvider = CloudProvider.VMWARE; break;
-            default : cloudProvider = CloudProvider.UNKNOWN; break;
-        }
-        return vmProvider.getInstance().getPlanByCloudAccount(user.getCloudAccounts(cloudProvider));
+        return vmProvider.getInstance().getPlanByCloudAccount(user.getCloudAccounts(CloudProvider.toEnum(cloudProv)));
     }
 
     protected static Plan[] getAllProviderPlan(int cloudProv) {
-        CloudProvider cloudProvider;
-        switch (cloudProv){
-            case 0 : cloudProvider = CloudProvider.GOOGLE; break;
-            case 1 : cloudProvider = CloudProvider.AMAZON; break;
-            case 2 : cloudProvider = CloudProvider.AZURE; break;
-            case 3 : cloudProvider = CloudProvider.DIGITAL_OCEAN; break;
-            case 4 : cloudProvider = CloudProvider.VMWARE; break;
-            default : cloudProvider = CloudProvider.UNKNOWN; break;
-        }
-        return vmProvider.getInstance().getPlanByCloudProv(cloudProvider);
+        return vmProvider.getInstance().getPlanByCloudProv(CloudProvider.toEnum(cloudProv));
     }
 
     protected boolean updatePlan(Account user, int cloudProv, int plan) {
