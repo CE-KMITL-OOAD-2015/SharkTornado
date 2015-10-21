@@ -3,6 +3,7 @@ package th.ac.kmitl.ce.ooad;
 import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -15,7 +16,6 @@ public class Account {
     private Profile profile;
     private String username, password;
     private List<CloudAccount> cloudAccounts;
-//    private CloudAccount cloudAccount;
 
     public List<CloudAccount> getCloudAccounts() {
         return cloudAccounts;
@@ -32,14 +32,6 @@ public class Account {
         cloudAccounts = new ArrayList<>();
     }
 
-
-//    public Account(Profile profile, String username, String password) {
-//        this.profile = profile;
-//        this.username = username;
-//        this.password = password;
-//        this.cloudAccount = new CloudAccount();
-//    }
-
     public Profile getProfile() {
         return profile;
 
@@ -52,9 +44,21 @@ public class Account {
         return null;
     }
 
-    public void addCloud(CloudAccount cloud){
+    public void addCloudAccount(CloudAccount cloud){
         cloudAccounts.add(cloud);
-        System.out.println(cloudAccounts.get(0).toString());
+        //System.out.println(cloudAccounts.get(0).toString());
+    }
+
+    public boolean removeCloudAccount(CloudProvider cloudProv, String cloudUsername){
+        Iterator<CloudAccount> it = cloudAccounts.iterator();
+        while (it.hasNext()) {
+            CloudAccount cloudAccount = it.next();
+            if(cloudAccount.getCloudProv() == cloudProv && cloudAccount.getUserName().equals(cloudUsername)){
+                it.remove();
+                return true;
+            }
+        }
+        return false;
     }
 
     public void setProfile(Profile profile) {

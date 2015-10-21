@@ -75,42 +75,32 @@ public class UserModel {
     }
 
     protected boolean addCloudAccount(String userId, String password, int cloudProv, String cloudUsername, String cloudPassword) {
-
         if (authenUser(getUserById(userId), password)) {
-            CloudProvider cloudProvider;
-            switch (cloudProv) {
-                case 0:
-                    cloudProvider = CloudProvider.GOOGLE;
-                    break;
-                case 1:
-                    cloudProvider = CloudProvider.AMAZON;
-                    break;
-                case 2:
-                    cloudProvider = CloudProvider.AZURE;
-                    break;
-                case 3:
-                    cloudProvider = CloudProvider.DIGITAL_OCEAN;
-                    break;
-                case 4:
-                    cloudProvider = CloudProvider.VMWARE;
-                    break;
-                default:
-                    cloudProvider = CloudProvider.UNKNOWN;
-                    break;
-            }
+            CloudProvider cloudProvider = CloudProvider.toEnum(cloudProv);
             CloudAccount temp = new CloudAccount(cloudProvider, cloudUsername, cloudPassword);
             System.out.println(temp.toString());
             Account account_tmp = accountRepository.findByUserId(userId);
-            account_tmp.addCloud(temp);
+            account_tmp.addCloudAccount(temp);
             System.out.println(account_tmp.toString());
             System.out.println(getUserById(userId));
             accountRepository.save(account_tmp);
             return true;
-        } else {
+        }
+        else {
             System.out.println("Authen failed.");
             return false;
         }
     }
 
-    protected boolean removeCloudAccount(String userId, )
+    protected boolean removeCloudAccount(String userId, String password, int cloudProv, String cloudUsername) {
+        if (authenUser(getUserById(userId), password)) {
+            CloudProvider cloudProvider = CloudProvider.toEnum(cloudProv);
+            Account account_temp = accountRepository.findByUserId(userId);
+            return account_temp.removeCloudAccount(CloudProvider.toEnum(cloudProv), cloudUsername);
+        }
+        else {
+            System.out.println("Authen failed.");
+            return false;
+        }
+    }
 }

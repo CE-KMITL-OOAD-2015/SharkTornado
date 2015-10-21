@@ -1,8 +1,5 @@
 package th.ac.kmitl.ce.ooad;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Nut on 10/12/2015.
  */

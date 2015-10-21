@@ -2,6 +2,9 @@ package th.ac.kmitl.ce.ooad;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.websocket.server.PathParam;
+
 /**
  * Created by Nut on 10/4/2015.
  */
@@ -72,10 +75,10 @@ public class MainController {
         return PlanModel.getInstance().getAllProviderPlan(cloudProv);
     }
 
-    @RequestMapping(value = "/plan/removeCloudAccount/{userId}", params = {"password", "cloudProv"})
+    @RequestMapping(value = "/plan/removeCloudAccount/{userId}", params = {"password", "cloudProv", "cloudUsername"})
     @ResponseBody
-    public boolean removeCloudAccount(@RequestParam("cloudProv") int cloudProv, @RequestParam("password") String password){
-        return false;
+    public boolean removeCloudAccount(@PathVariable String userId, @RequestParam("cloudProv") int cloudProv, @RequestParam("password") String password, @RequestParam("cloudUsername") String cloudUsername){
+        return UserModel.getInstance().removeCloudAccount(userId, password, cloudProv, cloudUsername);
     }
 
     @RequestMapping(value = "/plan/addCloudAccount/{userId}", params = {"cloudProv", "password", "cloudUsername", "cloudPassword"})
