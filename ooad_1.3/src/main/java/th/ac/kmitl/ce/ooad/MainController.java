@@ -3,7 +3,6 @@ package th.ac.kmitl.ce.ooad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 
 /**
  * Created by Nut on 10/4/2015.
@@ -92,5 +91,6 @@ public class MainController {
     public boolean addCloudAccount(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("cloudUsername") String cloudUsername, @RequestParam("cloudPassword") String cloudPassword, @RequestParam("cloudProv") int cloudProv){
         return UserModel.getInstance().addCloudAccount(userId, password, cloudProv, cloudUsername, cloudPassword);
     }
+
 
 }
