@@ -34,8 +34,12 @@ public class UserModel {
         if(isExist(username)){
             String tmp_pwd = accountRepository.findByUsername(username).getPassword();
             if(password.equals(tmp_pwd)) return true;
+            else return false;
         }
-        return false;
+        else {
+            System.out.println("Failed to login as " + username);
+            return false;
+        }
     }
 
     protected boolean updatePwd(String username, String password, String newpassword){
@@ -63,7 +67,11 @@ public class UserModel {
             accountRepository.save(temp);
             return true;
         }
-        return false;
+        else {
+            System.out.println("User " + username + "doesn't exist.");
+            return false;
+        }
+
     }
 
     private String getUserById(String userId){
@@ -100,6 +108,22 @@ public class UserModel {
         }
         else {
             System.out.println("Authen failed.");
+            return false;
+        }
+    }
+
+    public boolean updateEmail(String userId, String password, String newemail) {
+        if (authenUser(getUserById(userId), password)){
+            Account account_temp = accountRepository.findByUserId(userId);
+            Profile profile = account_temp.getProfile();
+            profile.setEmail(newemail);
+            account_temp.setUsername(newemail); //Comment this if don't want system to change username to new email address.
+            account_temp.setProfile(profile);
+            accountRepository.save(account_temp);
+            return true;
+        }
+        else {
+            System.out.println("Failed to update email for " + getUserById(userId));
             return false;
         }
     }

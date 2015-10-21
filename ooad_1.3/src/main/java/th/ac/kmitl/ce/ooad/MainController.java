@@ -57,6 +57,12 @@ public class MainController {
         return UserModel.getInstance().updatePwd(username, password, newpassword);
     }
 
+    @RequestMapping(value = "/update/email/{userId}", params = {"password", "newemail"})
+    @ResponseBody
+    public boolean updateEmail(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("newemail") String newemail){
+        return UserModel.getInstance().updateEmail(userId, password, newemail);
+    }
+
     @RequestMapping(value = "/update/plan/{userId}", params = {"password", "ip", "plan", "cloudProv"})
     @ResponseBody
     public boolean updatePlan(@PathVariable String userId, @RequestParam("cloudProv") int cloudProv, @RequestParam ("password") String password, @RequestParam("ip") String ip, @RequestParam("plan") int plan){
