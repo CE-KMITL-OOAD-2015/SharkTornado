@@ -36,7 +36,7 @@ public class MainController {
     @RequestMapping(value = "/login/{username}", params = "password")
     @ResponseBody
     public Account loginUser(@PathVariable String username, @RequestParam("password") String password){
-        return (UserModel.getInstance().authenUser(username, password)) ? UserModel.getInstance().getAccount(username, password) : null;
+        return (UserModel.getInstance().authenUser(username, password)) ? UserModel.getInstance().getAccountById(username) : null;
     }
 
     @RequestMapping(value = "/login/{username}")
