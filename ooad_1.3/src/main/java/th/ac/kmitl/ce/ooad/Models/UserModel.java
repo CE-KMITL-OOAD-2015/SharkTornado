@@ -1,4 +1,10 @@
-package th.ac.kmitl.ce.ooad;
+package th.ac.kmitl.ce.ooad.Models;
+
+import th.ac.kmitl.ce.ooad.CloudProvider.CloudProvider;
+import th.ac.kmitl.ce.ooad.Repositories.UserRepository;
+import th.ac.kmitl.ce.ooad.User.Account;
+import th.ac.kmitl.ce.ooad.User.CloudAccount;
+import th.ac.kmitl.ce.ooad.User.Profile;
 
 /**
  * Created by Nut on 10/12/2015.
@@ -6,7 +12,7 @@ package th.ac.kmitl.ce.ooad;
 public class UserModel {
 
     private static UserModel user_controller = new UserModel();
-    private AccountRepository accountRepository;
+    private UserRepository userRepository;
     private UserModel(){
     }
 
@@ -14,25 +20,25 @@ public class UserModel {
         return user_controller;
     }
 
-    protected void setAccountRepository(AccountRepository accountRepository){
-        this.accountRepository = accountRepository;
+    protected void setUserRepository(UserRepository userRepository){
+        this.userRepository = userRepository;
     }
 
     protected boolean addUser(String username, String password, String name, String email, String imgLoc){
         Profile profile = new Profile(email, name, imgLoc);
         Account account = new Account(profile, username, password);
-        accountRepository.save(account);
+        userRepository.save(account);
         return true;
     }
 
     protected boolean isExist(String username){
-        if(accountRepository.findByUsername(username) != null) return true;
+        if(userRepository.findByUsername(username) != null) return true;
         return false;
     }
 
     protected boolean authenUser(String username, String password){
         if(isExist(username)){
-            String tmp_pwd = accountRepository.findByUsername(username).getPassword();
+            String tmp_pwd = userRepository.findByUsername(username).getPassword();
             if(password.equals(tmp_pwd)) return true;
             else return false;
         }
@@ -44,11 +50,11 @@ public class UserModel {
 
     protected boolean updatePwd(String username, String password, String newpassword){
         if(authenUser(username, password)) {
-            Account temp = accountRepository.findByUsername(username);
+            Account temp = userRepository.findByUsername(username);
             System.out.println(temp.toString());
             temp.setPassword(newpassword);
             System.out.println(temp.toString());
-            accountRepository.save(temp);
+            userRepository.save(temp);
             return true;
         }
         else {
@@ -60,11 +66,11 @@ public class UserModel {
 
     protected boolean updateName(String username, String newName){
         if(isExist(username)) {
-            Account temp = accountRepository.findByUsername(username);
+            Account temp = userRepository.findByUsername(username);
             Profile pro_temp = temp.getProfile();
             pro_temp.setName(newName);
             temp.setProfile(pro_temp);
-            accountRepository.save(temp);
+            userRepository.save(temp);
             return true;
         }
         else {
@@ -75,15 +81,15 @@ public class UserModel {
     }
 
     private String getUserById(String userId){
-        return accountRepository.findByUserId(userId).getUsername();
+        return userRepository.findByUserId(userId).getUsername();
     }
 
     protected Account getAccountById(String userId){
-        return accountRepository.findByUserId(userId);
+        return userRepository.findByUserId(userId);
     }
 
     protected Account getAccountByUsername(String username){
-        return accountRepository.findByUsername(username);
+        return userRepository.findByUsername(username);
     }
 
     protected boolean addCloudAccount(String userId, String password, int cloudProv, String cloudUsername, String cloudPassword) {
@@ -91,11 +97,11 @@ public class UserModel {
             CloudProvider cloudProvider = CloudProvider.toEnum(cloudProv);
             CloudAccount temp = new CloudAccount(cloudProvider, cloudUsername, cloudPassword);
             System.out.println(temp.toString());
-            Account account_tmp = accountRepository.findByUserId(userId);
+            Account account_tmp = userRepository.findByUserId(userId);
             account_tmp.addCloudAccount(temp);
             System.out.println(account_tmp.toString());
             System.out.println(getUserById(userId));
-            accountRepository.save(account_tmp);
+            userRepository.save(account_tmp);
             return true;
         }
         else {
@@ -107,7 +113,7 @@ public class UserModel {
     protected boolean removeCloudAccount(String userId, String password, int cloudProv, String cloudUsername) {
         if (authenUser(getUserById(userId), password)) {
             CloudProvider cloudProvider = CloudProvider.toEnum(cloudProv);
-            Account account_temp = accountRepository.findByUserId(userId);
+            Account account_temp = userRepository.findByUserId(userId);
             return account_temp.removeCloudAccount(CloudProvider.toEnum(cloudProv), cloudUsername);
         }
         else {
@@ -118,12 +124,12 @@ public class UserModel {
 
     public boolean updateEmail(String userId, String password, String newemail) {
         if (authenUser(getUserById(userId), password)){
-            Account account_temp = accountRepository.findByUserId(userId);
+            Account account_temp = userRepository.findByUserId(userId);
             Profile profile = account_temp.getProfile();
             profile.setEmail(newemail);
             account_temp.setUsername(newemail); //Comment this if don't want system to change username to new email address.
             account_temp.setProfile(profile);
-            accountRepository.save(account_temp);
+            userRepository.save(account_temp);
             return true;
         }
         else {

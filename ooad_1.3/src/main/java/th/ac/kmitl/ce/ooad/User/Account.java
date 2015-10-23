@@ -1,6 +1,7 @@
-package th.ac.kmitl.ce.ooad;
+package th.ac.kmitl.ce.ooad.User;
 
 import org.springframework.data.annotation.Id;
+import th.ac.kmitl.ce.ooad.CloudProvider.CloudProvider;
 
 import java.util.ArrayList;
 import java.util.Iterator;

@@ -1,4 +1,4 @@
-package th.ac.kmitl.ce.ooad;
+package th.ac.kmitl.ce.ooad.User;
 
 /**
  * Created by Nut on 10/12/2015.

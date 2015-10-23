@@ -1,8 +1,12 @@
-package th.ac.kmitl.ce.ooad;
+package th.ac.kmitl.ce.ooad.Models;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.web.bind.annotation.*;
+import th.ac.kmitl.ce.ooad.Dashboard.Dashboard;
+import th.ac.kmitl.ce.ooad.Plan.Plan;
+import th.ac.kmitl.ce.ooad.Repositories.UserRepository;
+import th.ac.kmitl.ce.ooad.User.Account;
 
 
 /**
@@ -12,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class MainController implements CommandLineRunner{
 
     @Autowired
-    private AccountRepository accountRepository;
+    private UserRepository userRepository;
 
     @RequestMapping(value = "/")
     @ResponseBody
@@ -38,7 +42,7 @@ public class MainController implements CommandLineRunner{
     @RequestMapping("/")
     @ResponseBody
     public void init(){
-        UserModel.getInstance().setAccountRepository(accountRepository);
+        UserModel.getInstance().setUserRepository(userRepository);
     }
     */
 
@@ -114,6 +118,6 @@ public class MainController implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
-        UserModel.getInstance().setAccountRepository(accountRepository);
+        UserModel.getInstance().setUserRepository(userRepository);
     }
 }

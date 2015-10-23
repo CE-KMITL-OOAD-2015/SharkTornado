@@ -1,4 +1,4 @@
-package th.ac.kmitl.ce.ooad;
+package th.ac.kmitl.ce.ooad.Dashboard;
 
 /**
  * Created by Nut on 10/23/2015.

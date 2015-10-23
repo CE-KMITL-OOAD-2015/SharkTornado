@@ -1,4 +1,9 @@
-package th.ac.kmitl.ce.ooad;
+package th.ac.kmitl.ce.ooad.Models;
+
+import th.ac.kmitl.ce.ooad.CloudProvider.CloudProvider;
+import th.ac.kmitl.ce.ooad.CloudProvider.vmProvider;
+import th.ac.kmitl.ce.ooad.Plan.Plan;
+import th.ac.kmitl.ce.ooad.User.Account;
 
 /**
  * Created by Nut on 10/12/2015.

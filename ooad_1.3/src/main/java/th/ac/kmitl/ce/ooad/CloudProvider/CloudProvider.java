@@ -1,6 +1,4 @@
-package th.ac.kmitl.ce.ooad;
-
-import java.util.HashMap;
+package th.ac.kmitl.ce.ooad.CloudProvider;
 
 /**
  * Created by kohpai on 10/15/15.

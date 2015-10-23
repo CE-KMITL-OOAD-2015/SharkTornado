@@ -1,4 +1,4 @@
-package th.ac.kmitl.ce.ooad;
+package th.ac.kmitl.ce.ooad.Dashboard;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,6 @@
-package th.ac.kmitl.ce.ooad;
+package th.ac.kmitl.ce.ooad.Plan;
+
+import th.ac.kmitl.ce.ooad.CloudProvider.CloudProvider;
 
 /**
  * Created by Nut on 10/12/2015.

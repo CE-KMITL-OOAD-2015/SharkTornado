@@ -1,7 +1,6 @@
-package th.ac.kmitl.ce.ooad;
+package th.ac.kmitl.ce.ooad.User;
 
-import com.mongodb.connection.Cluster;
-import org.springframework.data.annotation.Id;
+import th.ac.kmitl.ce.ooad.CloudProvider.CloudProvider;
 
 /**
  * Created by kohpai on 10/15/15.
