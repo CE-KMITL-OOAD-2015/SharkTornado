@@ -45,7 +45,12 @@ public class MainController implements CommandLineRunner{
     @RequestMapping(value = "/login/{username}", params = "password")
     @ResponseBody
     public Account loginUser(@PathVariable String username, @RequestParam("password") String password){
-        return (UserModel.getInstance().authenUser(username, password)) ? UserModel.getInstance().getAccountById(username) : null;
+//        if (UserModel.getInstance().authenUser(username, password)) {
+//            System.out.println("Returning " + UserModel.getInstance().getAccountByUsername(username));
+//            return UserModel.getInstance().getAccountByUsername(username);
+//        }
+//        else return null;
+        return UserModel.getInstance().authenUser(username, password) ? UserModel.getInstance().getAccountByUsername(username) : null;
     }
 
     @RequestMapping(value = "/login/{username}")

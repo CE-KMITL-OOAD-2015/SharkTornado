@@ -82,6 +82,10 @@ public class UserModel {
         return accountRepository.findByUserId(userId);
     }
 
+    protected Account getAccountByUsername(String username){
+        return accountRepository.findByUsername(username);
+    }
+
     protected boolean addCloudAccount(String userId, String password, int cloudProv, String cloudUsername, String cloudPassword) {
         if (authenUser(getUserById(userId), password)) {
             CloudProvider cloudProvider = CloudProvider.toEnum(cloudProv);
