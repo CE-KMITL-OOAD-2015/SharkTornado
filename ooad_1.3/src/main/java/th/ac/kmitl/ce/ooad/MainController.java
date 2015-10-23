@@ -35,8 +35,8 @@ public class MainController {
 
     @RequestMapping(value = "/login/{username}", params = "password")
     @ResponseBody
-    public boolean loginUser(@PathVariable String username, @RequestParam("password") String passphrase){
-        return UserModel.getInstance().authenUser(username, passphrase);
+    public Account loginUser(@PathVariable String username, @RequestParam("password") String password){
+        return (UserModel.getInstance().authenUser(username, password)) ? UserModel.getInstance().getAccount(username, password) : null;
     }
 
     @RequestMapping(value = "/login/{username}")
@@ -92,5 +92,10 @@ public class MainController {
         return UserModel.getInstance().addCloudAccount(userId, password, cloudProv, cloudUsername, cloudPassword);
     }
 
+    @RequestMapping(value = "/dashboard/{userId}", params = {"password"})
+    @ResponseBody
+    public Dashboard getDashboard(@PathVariable String userId, @RequestParam("password") String password){
+        return DashboardModel.getInstance().getDashboard(UserModel.getInstance().getAccountById(userId), password);
+    }
 
 }

@@ -11,9 +11,12 @@ public class DashboardModel {
     public static DashboardModel getInstance(){
         return dashboardModel;
     }
-    protected static Dashboard getDashboard(Account user){
-        Cloud[] clouds = vmProvider.getInstance().getClouds(user);
-        Dashboard dashboard = new Dashboard(clouds);
-        return dashboard; //return
+    protected Dashboard getDashboard(Account user, String password){
+        if(user.getPassword().equals(password)) {
+            Cloud[] clouds = vmProvider.getInstance().getClouds(user);
+            Dashboard dashboard = new Dashboard(clouds);
+            return dashboard; //return
+        }
+        else return null;
     }
 }
