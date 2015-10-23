@@ -1,5 +1,8 @@
 package th.ac.kmitl.ce.ooad;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Nut on 10/14/2015.
  */
@@ -16,7 +19,12 @@ public class vmProvider implements Provider {
 
     @Override
     public Cloud[] getClouds(Account user) {
-        return new Cloud[0];
+        Cloud[] clouds = new Cloud[3];
+        Vm vm1 = new Vm("111.111.111.111", 100, 4, 300, 76, 1.29, 250, 1024, 512);
+        ArrayList<Vm> vms = new ArrayList<>();
+        vms.add(vm1);
+        clouds[0] = new Cloud("cloud test 1", vms);
+        return clouds;
     }
 
 //    @Override
