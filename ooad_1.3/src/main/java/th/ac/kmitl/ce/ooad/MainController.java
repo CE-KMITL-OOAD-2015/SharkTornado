@@ -1,6 +1,7 @@
 package th.ac.kmitl.ce.ooad;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -8,10 +9,16 @@ import org.springframework.web.bind.annotation.*;
  * Created by Nut on 10/4/2015.
  */
 @RestController
-public class MainController {
+public class MainController implements CommandLineRunner{
 
     @Autowired
     private AccountRepository accountRepository;
+
+    @RequestMapping(value = "/")
+    @ResponseBody
+    public boolean isRunning(){
+        return true;
+    }
 
     @RequestMapping(value = "/addUser/{username}/{name}", params = {"email", "password", "imgLocation"})
     @ResponseBody
@@ -27,11 +34,13 @@ public class MainController {
         }
     }
 
+    /*
     @RequestMapping("/")
     @ResponseBody
     public void init(){
         UserModel.getInstance().setAccountRepository(accountRepository);
     }
+    */
 
     @RequestMapping(value = "/login/{username}", params = "password")
     @ResponseBody
@@ -98,4 +107,8 @@ public class MainController {
         return DashboardModel.getInstance().getDashboard(UserModel.getInstance().getAccountById(userId), password);
     }
 
+    @Override
+    public void run(String... args) throws Exception {
+        UserModel.getInstance().setAccountRepository(accountRepository);
+    }
 }
