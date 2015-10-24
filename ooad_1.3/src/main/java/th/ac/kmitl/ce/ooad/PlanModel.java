@@ -1,5 +1,9 @@
 package th.ac.kmitl.ce.ooad;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * Created by Nut on 10/12/2015.
  */
@@ -14,11 +18,21 @@ public class PlanModel {
     }
 
     protected static Plan[] getUserPlanByCloud(Account user, int cloudProv){
-        return vmProvider.getInstance().getPlanByCloudAccount(user.getCloudAccounts(CloudProvider.toEnum(cloudProv)));
+        return (Plan[])vmProvider.getInstance().getPlanByCloudAccount(user.getCloudAccounts(CloudProvider.toEnum(cloudProv))).toArray();
     }
 
     protected static Plan[] getAllProviderPlan(int cloudProv) {
         return vmProvider.getInstance().getPlanByCloudProv(CloudProvider.toEnum(cloudProv));
+    }
+
+    protected List<Plan> getPlan(Account user) {
+        List<CloudAccount> cloudAccountList = user.getCloudAccounts();
+        ArrayList<Plan> plans = new ArrayList<Plan>();
+        for (CloudAccount cloudAccount : cloudAccountList) {
+            List<Plan> plans_tmp = vmProvider.getInstance().getPlanByCloudAccount(cloudAccount);
+            plans.addAll(plans_tmp.stream().collect(Collectors.toList()));
+        }
+        return plans;
     }
 
     protected boolean updatePlan(Account user, int cloudProv, int plan, String ip) {

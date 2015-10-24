@@ -1,6 +1,7 @@
 package th.ac.kmitl.ce.ooad;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Nut on 10/14/2015.
@@ -82,7 +83,7 @@ public class vmProvider implements Provider {
     }
 
     @Override
-    public Plan[] getPlanByCloudAccount(CloudAccount cloudAccount) {
+    public List<Plan> getPlanByCloudAccount(CloudAccount cloudAccount) {
         plans = new ArrayList<Plan>();
         switch (cloudAccount.getCloudProv()) {
             case GOOGLE: {
@@ -127,7 +128,7 @@ public class vmProvider implements Provider {
 //                plans.add(new Plan(CloudProvider.UNKNOWN, "0.0.0.0", 0.0f, 0.0f, 0.0f, 0.0f, 0));
             }
         }
-        return (Plan[])plans.toArray();
+        return plans;
     }
 
     @Override

@@ -85,6 +85,12 @@ public class MainController implements CommandLineRunner{
         return PlanModel.getInstance().updatePlan(UserModel.getInstance().getAccountById(userId), cloudProv, plan, ip);
     }
 
+    @RequestMapping(value={"/plan/{userId}"}, params={"password"})
+    @ResponseBody
+    public Plan[] requestUserPlan(@PathVariable String userId, @RequestParam(value="password") String password) {
+        return (Plan[])PlanModel.getInstance().getPlan(UserModel.getInstance().getAccountById(userId)).toArray();
+    }
+
     @RequestMapping(value = "/plan/{userId}", params = {"password", "cloudProv"})
     @ResponseBody
     public Plan[] requestUserPlan(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("cloudProv") int cloudProv){
@@ -114,6 +120,8 @@ public class MainController implements CommandLineRunner{
     public Dashboard getDashboard(@PathVariable String userId, @RequestParam("password") String password){
         return DashboardModel.getInstance().getDashboard(UserModel.getInstance().getAccountById(userId), password);
     }
+
+
 
     @Override
     public void run(String... args) throws Exception {
