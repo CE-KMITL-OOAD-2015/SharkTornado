@@ -1,8 +1,11 @@
 package th.ac.kmitl.ce.ooad;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 
 /**
@@ -12,8 +15,12 @@ import org.springframework.web.bind.annotation.*;
 public class MainController implements CommandLineRunner{
 
     @Autowired
+    @Resource(name = "AccountRepository")
     private AccountRepository accountRepository;
-
+    /*@Autowired
+    @Resource(name = "ReportRepository")
+    private ReportRepository reportRepository;
+*/
     @RequestMapping(value = "/")
     @ResponseBody
     public boolean isRunning(){
@@ -115,5 +122,6 @@ public class MainController implements CommandLineRunner{
     @Override
     public void run(String... args) throws Exception {
         UserModel.getInstance().setAccountRepository(accountRepository);
+        ReportModel.getInstance().setRepo(reportRepository);
     }
 }
