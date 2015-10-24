@@ -21,10 +21,10 @@ public class PlanModel {
         return vmProvider.getInstance().getPlanByCloudProv(CloudProvider.toEnum(cloudProv));
     }
 
-    protected boolean updatePlan(Account user, int cloudProv, int plan) {
+    protected boolean updatePlan(Account user, int cloudProv, int plan, String ip) {
         Plan[] plans = getAllProviderPlan(cloudProv);
         if(plan < plans.length){
-            vmProvider.getInstance().changePlan(user, plans[plan]);
+            vmProvider.getInstance().changePlan(user, plans[plan], CloudProvider.toEnum(cloudProv), ip);
             return true;
         }
         return false;

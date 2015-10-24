@@ -8,5 +8,5 @@ public interface Provider {
 //    public Plan[] getPlanByUser(Account user);
     public Plan[] getPlanByCloudAccount(CloudAccount cloudAccount);
     public Plan[] getPlanByCloudProv(CloudProvider provider);
-    public void changePlan(Account user, Plan newPlan);
+    public void changePlan(Account user, Plan newPlan, CloudProvider cloudProvider, String ip);
 }

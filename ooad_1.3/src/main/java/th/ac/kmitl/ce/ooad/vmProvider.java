@@ -1,7 +1,6 @@
 package th.ac.kmitl.ce.ooad;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Nut on 10/14/2015.
@@ -9,7 +8,7 @@ import java.util.List;
 public class vmProvider implements Provider {
 
     private static vmProvider vmprovider = new vmProvider();
-
+    private ArrayList<Plan> plans;
     private vmProvider(){
     }
 
@@ -84,11 +83,60 @@ public class vmProvider implements Provider {
 
     @Override
     public Plan[] getPlanByCloudAccount(CloudAccount cloudAccount) {
-        return new Plan[0];
+        plans = new ArrayList<Plan>();
+        switch (cloudAccount.getCloudProv()) {
+            case GOOGLE: {
+                plans.add(new Plan(CloudProvider.GOOGLE, "161.246.51.12", 15.6f, 2.4f, 1.7f, 300.0f, 500));
+                plans.add(new Plan(CloudProvider.GOOGLE, "161.246.51.13", 16.6f, 3.4f, 2.7f, 400.0f, 600));
+//                plans.add(new Plan(CloudProvider.GOOGLE, "161.246.51.12", 17.6f, 4.4f, 3.7f, 500.0f, 700));
+//                plans.add(new Plan(CloudProvider.GOOGLE, "161.246.51.12", 18.6f, 5.4f, 4.7f, 600.0f, 800));
+                break;
+            }
+            case AMAZON: {
+                plans.add(new Plan(CloudProvider.AMAZON, "68.69.70.11", 15.9f, 4.2f, 1.3f, 200.0f, 800));
+//                plans.add(new Plan(CloudProvider.AMAZON, "68.69.70.11", 12.2f, 1.4f, 3.5f, 800.0f, 600));
+//                plans.add(new Plan(CloudProvider.AMAZON, "68.69.70.11", 11.0f, 2.4f, 5.7f, 900.0f, 1000));
+//                plans.add(new Plan(CloudProvider.AMAZON, "68.69.70.11", 18.9f, 2.1f, 2.5f, 500.0f, 900));
+                break;
+            }
+            case DIGITAL_OCEAN: {
+                plans.add(new Plan(CloudProvider.DIGITAL_OCEAN, "69.69.69.69", 18.9f, 2.8f, 3.7f, 400.0f, 500));
+//                plans.add(new Plan(CloudProvider.DIGITAL_OCEAN, "69.69.69.69", 19.2f, 2.0f, 2.5f, 600.0f, 400));
+//                plans.add(new Plan(CloudProvider.DIGITAL_OCEAN, "69.69.69.69", 14.5f, 3.4f, 1.2f, 400.0f, 800));
+//                plans.add(new Plan(CloudProvider.DIGITAL_OCEAN, "69.69.69.69", 19.9f, 4.4f, 5.7f, 800.0f, 1000));
+                break;
+            }
+            case AZURE: {
+                plans.add(new Plan(CloudProvider.AZURE, "121.143.34.56", 12.6f, 1.0f, 1.7f, 300.0f, 500));
+//                plans.add(new Plan(CloudProvider.AZURE, "121.143.34.56", 14.2f, 3.7f, 2.0f, 500.0f, 800));
+//                plans.add(new Plan(CloudProvider.AZURE, "121.143.34.56", 15.3f, 2.5f, 2.7f, 400.0f, 600));
+//                plans.add(new Plan(CloudProvider.AZURE, "121.143.34.56", 11.6f, 3.0f, 1.2f, 500.0f, 300));
+                break;
+            }
+            case VMWARE: {
+                plans.add(new Plan(CloudProvider.VMWARE, "70.65.1.2", 9.9f, 3.4f, 1.5f, 200.0f, 600));
+//                plans.add(new Plan(CloudProvider.VMWARE, "70.65.1.2", 12.5f, 4.2f, 5.2f, 500.0f, 1000));
+//                plans.add(new Plan(CloudProvider.VMWARE, "70.65.1.2", 11.2f, 1.2f, 3.2f, 400.0f, 600));
+//                plans.add(new Plan(CloudProvider.VMWARE, "70.65.1.2", 15.2f, 5.1f, 3.7f, 500.0f, 500));
+                break;
+            }
+            default: {
+                plans.add(new Plan(CloudProvider.UNKNOWN, "0.0.0.0", 0.0f, 0.0f, 0.0f, 0.0f, 0));
+//                plans.add(new Plan(CloudProvider.UNKNOWN, "0.0.0.0", 0.0f, 0.0f, 0.0f, 0.0f, 0));
+//                plans.add(new Plan(CloudProvider.UNKNOWN, "0.0.0.0", 0.0f, 0.0f, 0.0f, 0.0f, 0));
+//                plans.add(new Plan(CloudProvider.UNKNOWN, "0.0.0.0", 0.0f, 0.0f, 0.0f, 0.0f, 0));
+            }
+        }
+        return (Plan[])plans.toArray();
     }
 
     @Override
-    public void changePlan(Account user, Plan newPlan) {
-
+    public void changePlan(Account user, Plan newPlan, CloudProvider cloudProvider, String ip) {
+        for(Plan plan : plans){
+            if(plan.ip.equals(ip)){
+                plans.remove(plan);
+                plans.add(newPlan);
+            }
+        }
     }
 }

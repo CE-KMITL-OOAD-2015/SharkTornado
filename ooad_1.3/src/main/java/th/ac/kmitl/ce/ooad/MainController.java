@@ -15,12 +15,8 @@ import javax.annotation.Resource;
 public class MainController implements CommandLineRunner{
 
     @Autowired
-    @Resource(name = "AccountRepository")
     private AccountRepository accountRepository;
-    /*@Autowired
-    @Resource(name = "ReportRepository")
-    private ReportRepository reportRepository;
-*/
+
     @RequestMapping(value = "/")
     @ResponseBody
     public boolean isRunning(){
@@ -86,7 +82,7 @@ public class MainController implements CommandLineRunner{
     @RequestMapping(value = "/update/plan/{userId}", params = {"password", "ip", "plan", "cloudProv"})
     @ResponseBody
     public boolean updatePlan(@PathVariable String userId, @RequestParam("cloudProv") int cloudProv, @RequestParam ("password") String password, @RequestParam("ip") String ip, @RequestParam("plan") int plan){
-        return PlanModel.getInstance().updatePlan(UserModel.getInstance().getAccountById(userId), cloudProv, plan);
+        return PlanModel.getInstance().updatePlan(UserModel.getInstance().getAccountById(userId), cloudProv, plan, ip);
     }
 
     @RequestMapping(value = "/plan/{userId}", params = {"password", "cloudProv"})
@@ -122,6 +118,6 @@ public class MainController implements CommandLineRunner{
     @Override
     public void run(String... args) throws Exception {
         UserModel.getInstance().setAccountRepository(accountRepository);
-        ReportModel.getInstance().setRepo(reportRepository);
+       // ReportModel.getInstance().setRepo(reportRepository);
     }
 }
