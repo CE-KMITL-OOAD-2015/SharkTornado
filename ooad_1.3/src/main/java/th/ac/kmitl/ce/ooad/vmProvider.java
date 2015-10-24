@@ -24,6 +24,16 @@ public class vmProvider implements Provider {
         ArrayList<Vm> vms = new ArrayList<>();
         vms.add(vm1);
         clouds[0] = new Cloud("cloud test 1", vms);
+        Vm vm2 = new Vm("vmIp, rCpu, rMem, rNetwork, cpu, mem, network, rStorage, Storage", 1, 2, 3, 4, 5, 6, 7, 8);
+        vms.add(vm2);
+        clouds[1] = new Cloud("cloud test 2", vms);
+        Vm vm3 = new Vm("this dashboard has 4 cloud each cloud has many vms", 1, 2, 3, 4, 5, 6, 7, 8);
+        vms.add(vm3);
+        clouds[2] = new Cloud("cloud test 3", vms);
+        vms.add(vm1);
+        vms.add(vm2);
+        clouds[2] = new Cloud("cloud test 3", vms);
+
         return clouds;
     }
 

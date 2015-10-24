@@ -1,11 +1,10 @@
 package th.ac.kmitl.ce.ooad;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -15,7 +14,7 @@ import javax.annotation.Resource;
 public class MainController implements CommandLineRunner{
 
     @Autowired
-    private AccountRepository accountRepository;
+    private UserRepository userRepository;
 
     @RequestMapping(value = "/")
     @ResponseBody
@@ -41,7 +40,7 @@ public class MainController implements CommandLineRunner{
     @RequestMapping("/")
     @ResponseBody
     public void init(){
-        UserModel.getInstance().setAccountRepository(accountRepository);
+        UserModel.getInstance().setUserRepository(userRepository);
     }
     */
 
@@ -60,6 +59,12 @@ public class MainController implements CommandLineRunner{
     @ResponseBody
     public boolean isUser(@PathVariable String username){
         return UserModel.getInstance().isExist(username);
+    }
+
+    @RequestMapping(value = "/request/account/{userId}")
+    @ResponseBody
+    public Account getAccount(@PathVariable String userId){
+        return UserModel.getInstance().getAccountById(userId);
     }
 
     @RequestMapping(value = "/update/name/{username}", params = {"name", "password"})
@@ -87,13 +92,13 @@ public class MainController implements CommandLineRunner{
 
     @RequestMapping(value={"/plan/{userId}"}, params={"password"})
     @ResponseBody
-    public Plan[] requestUserPlan(@PathVariable String userId, @RequestParam(value="password") String password) {
-        return (Plan[])PlanModel.getInstance().getPlan(UserModel.getInstance().getAccountById(userId)).toArray();
+    public List<Plan> requestAllUserPlan(@PathVariable String userId, @RequestParam(value="password") String password) {
+        return PlanModel.getInstance().getPlan(UserModel.getInstance().getAccountById(userId), password);
     }
 
     @RequestMapping(value = "/plan/{userId}", params = {"password", "cloudProv"})
     @ResponseBody
-    public Plan[] requestUserPlan(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("cloudProv") int cloudProv){
+    public Plan[] requestUserPlanByCloudProv(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("cloudProv") int cloudProv){
         return PlanModel.getInstance().getUserPlanByCloud(UserModel.getInstance().getAccountById(userId), cloudProv);
     }
 
@@ -115,17 +120,16 @@ public class MainController implements CommandLineRunner{
         return UserModel.getInstance().addCloudAccount(userId, password, cloudProv, cloudUsername, cloudPassword);
     }
 
-    @RequestMapping(value = "/dashboard/{userId}", params = {"password"})
+    @RequestMapping(value = "/dashboard/{userId}", params = "password")
     @ResponseBody
     public Dashboard getDashboard(@PathVariable String userId, @RequestParam("password") String password){
+        System.out.println("Dashboard is requested.");
         return DashboardModel.getInstance().getDashboard(UserModel.getInstance().getAccountById(userId), password);
     }
 
-
-
     @Override
     public void run(String... args) throws Exception {
-        UserModel.getInstance().setAccountRepository(accountRepository);
+        UserModel.getInstance().setUserRepository(userRepository);
        // ReportModel.getInstance().setRepo(reportRepository);
     }
 }

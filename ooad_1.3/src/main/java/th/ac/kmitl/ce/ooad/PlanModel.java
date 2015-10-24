@@ -25,14 +25,17 @@ public class PlanModel {
         return vmProvider.getInstance().getPlanByCloudProv(CloudProvider.toEnum(cloudProv));
     }
 
-    protected List<Plan> getPlan(Account user) {
-        List<CloudAccount> cloudAccountList = user.getCloudAccounts();
-        ArrayList<Plan> plans = new ArrayList<Plan>();
-        for (CloudAccount cloudAccount : cloudAccountList) {
-            List<Plan> plans_tmp = vmProvider.getInstance().getPlanByCloudAccount(cloudAccount);
-            plans.addAll(plans_tmp.stream().collect(Collectors.toList()));
+    protected List<Plan> getPlan(Account user, String password) {
+        if(UserModel.getInstance().authenUser(user.getUsername(), password)) {
+            List<CloudAccount> cloudAccountList = user.getCloudAccounts();
+            ArrayList<Plan> plans = new ArrayList<Plan>();
+            for (CloudAccount cloudAccount : cloudAccountList) {
+                List<Plan> plans_tmp = vmProvider.getInstance().getPlanByCloudAccount(cloudAccount);
+                plans.addAll(plans_tmp.stream().collect(Collectors.toList()));
+            }
+            return plans;
         }
-        return plans;
+        else return null;
     }
 
     protected boolean updatePlan(Account user, int cloudProv, int plan, String ip) {
