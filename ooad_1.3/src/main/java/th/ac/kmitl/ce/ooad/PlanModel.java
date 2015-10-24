@@ -18,7 +18,7 @@ public class PlanModel {
     }
 
     protected static Plan[] getUserPlanByCloud(Account user, int cloudProv){
-        return (Plan[])vmProvider.getInstance().getPlanByCloudAccount(user.getCloudAccounts(CloudProvider.toEnum(cloudProv))).toArray();
+        return (Plan[]) vmProvider.getInstance().getPlanByCloudAccount(user.getCloudAccounts(CloudProvider.toEnum(cloudProv))).toArray();
     }
 
     protected static Plan[] getAllProviderPlan(int cloudProv) {
