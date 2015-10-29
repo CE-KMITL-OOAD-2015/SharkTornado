@@ -5,5 +5,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 /**
  * Created by Nut on 10/24/2015.
  */
-public class ReportRepository {
+public interface ReportRepository extends MongoRepository<Report, String> {
 }
