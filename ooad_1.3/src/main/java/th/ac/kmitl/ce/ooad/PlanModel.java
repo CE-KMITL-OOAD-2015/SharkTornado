@@ -17,11 +17,11 @@ public class PlanModel {
         return plan_controller;
     }
 
-    protected static Plan[] getUserPlanByCloud(Account user, int cloudProv){
+    protected Plan[] getUserPlanByCloud(Account user, int cloudProv){
         return (Plan[]) vmProvider.getInstance().getPlanByCloudAccount(user.getCloudAccounts(CloudProvider.toEnum(cloudProv))).toArray();
     }
 
-    protected static Plan[] getAllProviderPlan(int cloudProv) {
+    protected Plan[] getAllProviderPlan(int cloudProv) {
         return vmProvider.getInstance().getPlanByCloudProv(CloudProvider.toEnum(cloudProv));
     }
 

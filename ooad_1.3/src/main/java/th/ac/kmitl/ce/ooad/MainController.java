@@ -15,6 +15,10 @@ public class MainController implements CommandLineRunner{
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private ReportRepository reportRepository;
+    @Autowired
+    private MessageRepository messageRepository;
 
     @RequestMapping(value = "/")
     @ResponseBody
@@ -35,14 +39,6 @@ public class MainController implements CommandLineRunner{
             return false;
         }
     }
-
-    /*
-    @RequestMapping("/")
-    @ResponseBody
-    public void init(){
-        UserModel.getInstance().setUserRepository(userRepository);
-    }
-    */
 
     @RequestMapping(value = "/login/{username}", params = "password")
     @ResponseBody
@@ -129,7 +125,8 @@ public class MainController implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
-        UserModel.getInstance().setUserRepository(userRepository);
-       // ReportModel.getInstance().setRepo(reportRepository);
+        UserModel.getInstance().setRepo(userRepository);
+        ReportModel.getInstance().setRepo(reportRepository);
+        MessageModel.getInstance().setRepo(messageRepository);
     }
 }
