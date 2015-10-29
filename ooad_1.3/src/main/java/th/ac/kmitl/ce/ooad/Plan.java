@@ -1,5 +1,7 @@
 package th.ac.kmitl.ce.ooad;
 
+import th.ac.kmitl.ce.ooad.CloudProvider;
+
 /**
  * Created by Nut on 10/12/2015.
  */

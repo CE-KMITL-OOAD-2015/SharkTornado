@@ -1,9 +1,6 @@
 package th.ac.kmitl.ce.ooad;
 
 import org.springframework.data.annotation.Id;
-import th.ac.kmitl.ce.ooad.CloudAccount;
-import th.ac.kmitl.ce.ooad.CloudProvider;
-import th.ac.kmitl.ce.ooad.Profile;
 
 import java.util.ArrayList;
 import java.util.Iterator;
