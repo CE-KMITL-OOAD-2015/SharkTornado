@@ -82,7 +82,7 @@ public class MainController implements CommandLineRunner{
 
     @RequestMapping(value = "/update/plan/{userId}", params = {"password", "ip", "plan", "cloudProv"})
     @ResponseBody
-    public boolean updatePlan(@PathVariable String userId, @RequestParam("cloudProv") int cloudProv, @RequestParam ("password") String password, @RequestParam("ip") String ip, @RequestParam("plan") int plan){
+    public boolean updatePlan(@PathVariable String userId, @RequestParam("cloudProv") String cloudProv, @RequestParam ("password") String password, @RequestParam("ip") String ip, @RequestParam("plan") int plan){
         return PlanModel.getInstance().updatePlan(UserModel.getInstance().getAccountById(userId), cloudProv, plan, ip);
     }
 
@@ -94,7 +94,7 @@ public class MainController implements CommandLineRunner{
 
     @RequestMapping(value={"/plan/{userId}"}, params={"password", "vmIP", "cloudProv"})
     @ResponseBody
-    public Plan requestUserPlan(@PathVariable String userId, @RequestParam("cloudProv") int cloudProv, @RequestParam(value="password") String password, @RequestParam("vmIP") String vmIP) {
+    public Plan requestUserPlan(@PathVariable String userId, @RequestParam("cloudProv") String cloudProv, @RequestParam(value="password") String password, @RequestParam("vmIP") String vmIP) {
         return PlanModel.getInstance().getVmPlan(UserModel.getInstance().getAccountById(userId), password, vmIP, cloudProv);
     }
 
@@ -106,7 +106,7 @@ public class MainController implements CommandLineRunner{
 
     @RequestMapping(value = "/plan", params = "cloudProv")
     @ResponseBody
-    public Plan[] requestCloudPlan(@RequestParam("cloudProv") int cloudProv){
+    public Plan[] requestCloudPlan(@RequestParam("cloudProv") String cloudProv){
         return PlanModel.getInstance().getAllProviderPlan(cloudProv);
     }
 
@@ -145,5 +145,15 @@ public class MainController implements CommandLineRunner{
         UserModel.getInstance().setRepo(userRepository);
         ReportModel.getInstance().setRepo(reportRepository);
         MessageModel.getInstance().setRepo(messageRepository);
+        CloudProvider.setCloudProviderString("GOOGLE", CloudProvider.GOOGLE);
+        CloudProvider.setCloudProviderString("google", CloudProvider.GOOGLE);
+        CloudProvider.setCloudProviderString("AMAZON", CloudProvider.AMAZON);
+        CloudProvider.setCloudProviderString("amazon", CloudProvider.AMAZON);
+        CloudProvider.setCloudProviderString("AZURE", CloudProvider.AZURE);
+        CloudProvider.setCloudProviderString("azure", CloudProvider.AZURE);
+        CloudProvider.setCloudProviderString("DIGITAL_OCEAN", CloudProvider.DIGITAL_OCEAN);
+        CloudProvider.setCloudProviderString("digital_ocean", CloudProvider.DIGITAL_OCEAN);
+        CloudProvider.setCloudProviderString("VMWARE", CloudProvider.VMWARE);
+        CloudProvider.setCloudProviderString("vmware", CloudProvider.VMWARE);
     }
 }

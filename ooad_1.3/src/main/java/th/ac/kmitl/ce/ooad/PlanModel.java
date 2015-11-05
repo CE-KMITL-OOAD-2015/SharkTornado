@@ -21,7 +21,7 @@ public class PlanModel {
         return (Plan[]) vmProvider.getInstance().getPlanByCloudAccount(user.getCloudAccounts(CloudProvider.toEnum(cloudProv))).toArray();
     }
 
-    protected Plan[] getAllProviderPlan(int cloudProv) {
+    protected Plan[] getAllProviderPlan(String cloudProv) {
         return vmProvider.getInstance().getPlanByCloudProv(CloudProvider.toEnum(cloudProv));
     }
 
@@ -38,7 +38,7 @@ public class PlanModel {
         else return null;
     }
 
-    protected Plan getVmPlan(Account user, String password, String vmIP, int cloudProv){
+    protected Plan getVmPlan(Account user, String password, String vmIP, String cloudProv){
         if(UserModel.getInstance().authenUser(user.getUsername(), password)){
             Plan plan = vmProvider.getInstance().getPlanByVM(user.getCloudAccounts(CloudProvider.toEnum(cloudProv)), vmIP);
             return plan;
@@ -46,7 +46,7 @@ public class PlanModel {
         return null;
     }
 
-    protected boolean updatePlan(Account user, int cloudProv, int plan, String ip) {
+    protected boolean updatePlan(Account user, String cloudProv, int plan, String ip) {
         Plan[] plans = getAllProviderPlan(cloudProv);
         if(plan < plans.length){
             vmProvider.getInstance().changePlan(user, plans[plan], CloudProvider.toEnum(cloudProv), ip);

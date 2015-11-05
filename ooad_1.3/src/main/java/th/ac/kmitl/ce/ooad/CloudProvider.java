@@ -8,6 +8,7 @@ import java.util.HashMap;
 public enum CloudProvider {
     GOOGLE, AMAZON, AZURE, DIGITAL_OCEAN, VMWARE, UNKNOWN;
 
+    private static HashMap<String, CloudProvider> map = new HashMap<>();
     public static CloudProvider toEnum (int cloudProv){
         CloudProvider cloudProvider;
         switch (cloudProv){
@@ -19,5 +20,13 @@ public enum CloudProvider {
             default : cloudProvider = CloudProvider.UNKNOWN; break;
         }
         return cloudProvider;
+    }
+
+    public static CloudProvider toEnum (String cloudProv){
+        return map.get(cloudProv);
+    }
+
+    public static void setCloudProviderString(String cloudProvString, CloudProvider cloudProvider){
+        map.put(cloudProvString, cloudProvider);
     }
 }
