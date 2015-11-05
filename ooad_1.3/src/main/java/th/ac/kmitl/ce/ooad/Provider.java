@@ -11,4 +11,5 @@ public interface Provider {
     public List<Plan> getPlanByCloudAccount(CloudAccount cloudAccount);
     public Plan[] getPlanByCloudProv(CloudProvider provider);
     public void changePlan(Account user, Plan newPlan, CloudProvider cloudProvider, String ip);
+    public ReportTemplate getStatus(Account user);
 }

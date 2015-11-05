@@ -19,18 +19,23 @@ public class vmProvider implements Provider {
 
     @Override
     public Cloud[] getClouds(Account user) {
-        Cloud[] clouds = new Cloud[3];
-        Vm vm1 = new Vm("111.111.111.111", 100, 4, 300, 76, 1.29, 250, 1024, 512);
+        Cloud[] clouds = new Cloud[5];
         ArrayList<Vm> vms = new ArrayList<>();
-        vms.add(vm1);
-        clouds[0] = new Cloud("cloud test 1", vms);
-        Vm vm2 = new Vm("222.222.222.222", 100, 20, 2000, 5, 13.2, 1562.89, 20480, 14789);
-        vms.add(vm2);
-        clouds[1] = new Cloud("cloud test 2", vms);
-        Vm vm3 = new Vm("333.333.333.333", 100, 16, 500, 99, 15, 499, 700, 598);
-        vms.add(vm3);
-        clouds[2] = new Cloud("cloud test 3", vms);
-
+        vms.add(new Vm("161.246.51.12", 100, 1.7, 300, 76, 1.29, 200, 500, 400));
+        vms.add(new Vm("161.246.51.13", 100, 2.7, 400, 76, 2, 250, 600, 512));
+        clouds[0] = new Cloud("GOOGLE", vms);
+        vms.clear();
+        vms.add(new Vm("68.69.70.11", 100, 1.3, 200, 22, 0.76, 124, 800, 795));
+        clouds[1] = new Cloud("AMAZON", vms);
+        vms.clear();
+        vms.add(new Vm("69.69.69.69", 100, 3.7, 400, 53, 2.22, 333, 500, 111));
+        clouds[2] = new Cloud("DIGITAL OCEAN", vms);
+        vms.clear();
+        vms.add(new Vm("121.143.34.56", 100, 1.7, 300, 33, 1.2, 222, 500, 333));
+        clouds[3] = new Cloud("AZURE", vms);
+        vms.clear();
+        vms.add(new Vm("70.65.1.2", 100, 1.5, 200, 33, 1.2, 155, 600, 444));
+        clouds[4] = new Cloud("VMWARE", vms);
         return clouds;
     }
 
@@ -147,4 +152,10 @@ public class vmProvider implements Provider {
             }
         }
     }
+
+    @Override
+    public ReportTemplate getStatus(Account user) {
+        return new Report();
+    }
+
 }

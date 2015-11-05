@@ -1,5 +1,7 @@
 package th.ac.kmitl.ce.ooad;
 
+import java.util.Date;
+
 /**
  * Created by Nut on 10/24/2015.
  */
@@ -10,18 +12,19 @@ public abstract class ReportTemplate {
     double[] mems;
     double[] networks;
     int[] storage;
-
+    Date date;
 
     public ReportTemplate() {
     }
 
-    public ReportTemplate(CloudProvider cloudProvider, int vmNumber, double[] cpus, double[] mems, double[] networks, int[] storage) {
+    public ReportTemplate(CloudProvider cloudProvider, int vmNumber, double[] cpus, double[] mems, double[] networks, int[] storage, Date date) {
         this.cloudProvider = cloudProvider;
         this.vmNumber = vmNumber;
         this.cpus = cpus;
         this.mems = mems;
         this.networks = networks;
         this.storage = storage;
+        this.date = date;
     }
 
     public CloudProvider getCloudProvider() {

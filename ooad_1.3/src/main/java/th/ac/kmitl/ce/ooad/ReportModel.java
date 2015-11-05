@@ -7,14 +7,14 @@ public class ReportModel {
     private static ReportModel reportModel = new ReportModel();
     private ReportRepository repo;
 
-    public ReportModel() {
+    private ReportModel() {
     }
 
     public static ReportModel getInstance() {
         return reportModel;
     }
 
-    public void setRepo(ReportRepository repo) {
+    protected void setRepo(ReportRepository repo) {
         this.repo = repo;
     }
 }
