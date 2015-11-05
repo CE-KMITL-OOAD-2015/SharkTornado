@@ -24,18 +24,23 @@ public class vmProvider implements Provider {
         vms.add(new Vm("161.246.51.12", 100, 1.7, 300, 76, 1.29, 200, 500, 400));
         vms.add(new Vm("161.246.51.13", 100, 2.7, 400, 76, 2, 250, 600, 512));
         clouds[0] = new Cloud("GOOGLE", vms);
-        vms.clear();
+        //System.out.println(clouds[0].cloudName + " \n" + "Vm1 : " + clouds[0].getVms().get(0).vmIP + "\nVm2 : " + clouds[0].getVms().get(1).vmIP);
+        vms = new ArrayList<>();
         vms.add(new Vm("68.69.70.11", 100, 1.3, 200, 22, 0.76, 124, 800, 795));
         clouds[1] = new Cloud("AMAZON", vms);
-        vms.clear();
+        //System.out.println(clouds[1].cloudName + " \n" + "Vm1 : " + clouds[0].getVms().get(0).vmIP);
+        vms = new ArrayList<>();
         vms.add(new Vm("69.69.69.69", 100, 3.7, 400, 53, 2.22, 333, 500, 111));
         clouds[2] = new Cloud("DIGITAL OCEAN", vms);
-        vms.clear();
+       // System.out.println(clouds[2].cloudName + " \n" + "Vm1 : " + clouds[0].getVms().get(0).vmIP);
+        vms = new ArrayList<>();
         vms.add(new Vm("121.143.34.56", 100, 1.7, 300, 33, 1.2, 222, 500, 333));
         clouds[3] = new Cloud("AZURE", vms);
-        vms.clear();
+        //System.out.println(clouds[3].cloudName + " \n" + "Vm1 : " + clouds[0].getVms().get(0).vmIP);
+        vms = new ArrayList<>();
         vms.add(new Vm("70.65.1.2", 100, 1.5, 200, 33, 1.2, 155, 600, 444));
         clouds[4] = new Cloud("VMWARE", vms);
+        //System.out.println(clouds[4].cloudName + " \n" + "Vm1 : " + clouds[0].getVms().get(0).vmIP);
         return clouds;
     }
 

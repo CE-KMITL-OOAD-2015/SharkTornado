@@ -15,7 +15,7 @@ public class DashboardModel {
         if(user.getPassword().equals(password)) {
             Cloud[] clouds = vmProvider.getInstance().getClouds(user);
             Dashboard dashboard = new Dashboard(clouds);
-            //System.out.println(dashboard.toString());
+            System.out.println(dashboard.toString());
             return dashboard; //return
         }
         else return null;

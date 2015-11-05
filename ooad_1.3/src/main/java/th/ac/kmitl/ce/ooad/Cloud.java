@@ -35,7 +35,10 @@ public class Cloud {
     }
 
     public String toString(){
-
-        return cloudName + Vms.toString() + "\n";
+        String vms = "\n";
+        for(Vm vm : Vms){
+            vms += "\t" + vm.toString() + "\n";
+        }
+        return cloudName + vms;
     }
 }
