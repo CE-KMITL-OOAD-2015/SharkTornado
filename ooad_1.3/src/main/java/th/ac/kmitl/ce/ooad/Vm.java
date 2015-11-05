@@ -20,6 +20,10 @@ public class Vm {
         Storage = storage;
     }
 
+    public Vm(){
+
+    }
+
     @Override
     public String toString(){
         return vmIP;

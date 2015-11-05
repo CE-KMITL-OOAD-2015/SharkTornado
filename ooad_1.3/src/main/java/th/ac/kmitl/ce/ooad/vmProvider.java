@@ -159,8 +159,48 @@ public class vmProvider implements Provider {
     }
 
     @Override
-    public ReportTemplate getStatus(Account user) {
-        return new Report();
+    public Cloud getCloudStatus(Account user, CloudProvider cloudProvider) {
+        return new Cloud(cloudProvider.toString(), null);
+    }
+
+    @Override
+    public Vm getVmStatus(Account user, String vmIP){
+        double d = Math.random() * 1.7;
+        int cpu = (int)Math.random()*100;
+        int network = (int)Math.random()*300;
+        int storage = (int)Math.random()*500;
+        return new Vm(vmIP, 100, 1.7, 300, cpu, d, network, 500, storage);
+    }
+
+    @Override
+    public Plan getPlanByVM(CloudAccount cloudAccount, String vmIP) {
+        switch (cloudAccount.getCloudProv()) {
+            case GOOGLE: {
+                if(vmIP.equals("161.246.51.12")) return new Plan(CloudProvider.GOOGLE, "161.246.51.12", 15.6f, 2.4f, 1.7f, 300.0f, 500);
+                else if(vmIP.equals("161.246.51.13")) return new Plan(CloudProvider.GOOGLE, "161.246.51.13", 16.6f, 3.4f, 2.7f, 400.0f, 600);
+                break;
+            }
+            case AMAZON: {
+                if(vmIP.equals("68.69.70.11")) return new Plan(CloudProvider.AMAZON, "68.69.70.11", 15.9f, 4.2f, 1.3f, 200.0f, 800);
+                break;
+            }
+            case DIGITAL_OCEAN: {
+                if(vmIP.equals("69.69.69.69")) return new Plan(CloudProvider.DIGITAL_OCEAN, "69.69.69.69", 18.9f, 2.8f, 3.7f, 400.0f, 500);
+                break;
+            }
+            case AZURE: {
+                if(vmIP.equals("121.143.34.56")) return new Plan(CloudProvider.AZURE, "121.143.34.56", 12.6f, 1.0f, 1.7f, 300.0f, 500);
+                break;
+            }
+            case VMWARE: {
+                if(vmIP.equals("70.65.1.2")) return new Plan(CloudProvider.VMWARE, "70.65.1.2", 9.9f, 3.4f, 1.5f, 200.0f, 600);
+                break;
+            }
+            default: {
+                return null;
+            }
+        }
+        return null;
     }
 
 }

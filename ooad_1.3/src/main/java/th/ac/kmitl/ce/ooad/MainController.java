@@ -92,6 +92,12 @@ public class MainController implements CommandLineRunner{
         return PlanModel.getInstance().getPlan(UserModel.getInstance().getAccountById(userId), password);
     }
 
+    @RequestMapping(value={"/plan/{userId}"}, params={"password", "vmIP", "cloudProv"})
+    @ResponseBody
+    public Plan requestUserPlan(@PathVariable String userId, @RequestParam("cloudProv") int cloudProv, @RequestParam(value="password") String password, @RequestParam("vmIP") String vmIP) {
+        return PlanModel.getInstance().getVmPlan(UserModel.getInstance().getAccountById(userId), password, vmIP, cloudProv);
+    }
+
     @RequestMapping(value = "/plan/{userId}", params = {"password", "cloudProv"})
     @ResponseBody
     public Plan[] requestUserPlanByCloudProv(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("cloudProv") int cloudProv){
@@ -118,9 +124,20 @@ public class MainController implements CommandLineRunner{
 
     @RequestMapping(value = "/dashboard/{userId}", params = "password")
     @ResponseBody
-    public Dashboard getDashboard(@PathVariable String userId, @RequestParam("password") String password){
+    public Cloud[] getDashboard(@PathVariable String userId, @RequestParam("password") String password){
         System.out.println("Dashboard is requested.");
         return DashboardModel.getInstance().getDashboard(UserModel.getInstance().getAccountById(userId), password);
+    }
+
+   /* @RequestMapping(value = "/upload/profile-pic", method=RequestMethod.POST)
+    @ResponseBody
+    public String handleFileUpload(@RequestParam("file") MultipleFile file){
+    }*/
+
+    @RequestMapping(value = "/dashboard/{userId}", params = {"password", "vmIP"})
+    @ResponseBody
+    public Vm getVMStatus(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("vmIP") String vmIP){
+        return DashboardModel.getInstance().getVMStatus(UserModel.getInstance().getAccountById(userId), password, vmIP);
     }
 
     @Override

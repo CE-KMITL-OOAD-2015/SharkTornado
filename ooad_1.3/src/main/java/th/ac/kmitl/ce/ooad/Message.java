@@ -6,12 +6,13 @@ package th.ac.kmitl.ce.ooad;
 public class Message {
     CloudProvider cloudProvider;
     String vm;
-    String msg;
+    String topic;
+    String detail;
 
-    public Message(CloudProvider cloudProvider, String vm, String msg) {
+    public Message(CloudProvider cloudProvider, String vm, String detail) {
         this.cloudProvider = cloudProvider;
         this.vm = vm;
-        this.msg = msg;
+        this.detail = detail;
     }
 
     public Message() {
@@ -33,11 +34,11 @@ public class Message {
         this.vm = vm;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getDetail() {
+        return detail;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 }

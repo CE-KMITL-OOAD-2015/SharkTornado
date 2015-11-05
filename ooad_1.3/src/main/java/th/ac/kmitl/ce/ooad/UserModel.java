@@ -19,7 +19,7 @@ public class UserModel {
     }
 
     protected boolean addUser(String username, String password, String name, String email, String imgLoc){
-        Profile profile = new Profile(email, name, imgLoc);
+        Profile profile = new Profile(email, name, imgLoc, password);
         Account account = new Account(profile, username, password);
         if(repo.findByUsername(username) == null){
             repo.save(account);

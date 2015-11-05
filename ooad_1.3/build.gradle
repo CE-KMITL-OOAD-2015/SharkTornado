@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
         classpath('io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE')
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.7.RELEASE")
     }
 }
 
@@ -19,7 +20,7 @@ apply plugin: 'io.spring.dependency-management'
 
 jar {
     baseName = 'ooad'
-    version = '2.4-3000'
+    version = '2.5-3000'
 }
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -30,6 +31,7 @@ repositories {
 
 
 dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
     compile('org.springframework.boot:spring-boot-starter-actuator')
     compile('org.springframework.boot:spring-boot-starter-web')
     testCompile('org.springframework.boot:spring-boot-starter-test')

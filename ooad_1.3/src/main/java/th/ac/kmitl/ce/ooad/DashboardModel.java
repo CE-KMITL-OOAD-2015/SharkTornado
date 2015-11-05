@@ -11,12 +11,20 @@ public class DashboardModel {
     public static DashboardModel getInstance(){
         return dashboardModel;
     }
-    protected Dashboard getDashboard(Account user, String password){
-        if(user.getPassword().equals(password)) {
+    protected Cloud[] getDashboard(Account user, String password){
+        if(UserModel.getInstance().authenUser(user.getUsername(), password)){
             Cloud[] clouds = vmProvider.getInstance().getClouds(user);
             Dashboard dashboard = new Dashboard(clouds);
             System.out.println(dashboard.toString());
-            return dashboard; //return
+            return clouds; //return
+        }
+        else return null;
+    }
+
+    protected Vm getVMStatus(Account user, String password, String vmIP){
+        if(UserModel.getInstance().authenUser(user.getUsername(), password)){
+            Vm vm = vmProvider.getInstance().getVmStatus(user, vmIP);
+            return vm;
         }
         else return null;
     }
