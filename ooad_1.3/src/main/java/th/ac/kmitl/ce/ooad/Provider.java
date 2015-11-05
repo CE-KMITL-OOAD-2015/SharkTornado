@@ -14,4 +14,5 @@ public interface Provider {
     public Cloud getCloudStatus(Account user, CloudProvider cloudProvider);
     public Vm getVmStatus(Account user, String vmIP);
     public Plan getPlanByVM(CloudAccount cloudAccount, String vmIP);
+    double getPrice(Plan plan);
 }

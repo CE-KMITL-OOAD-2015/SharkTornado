@@ -203,4 +203,9 @@ public class vmProvider implements Provider {
         return null;
     }
 
+    @Override
+    public double getPrice(Plan plan) {
+        return 10.00;
+    }
+
 }

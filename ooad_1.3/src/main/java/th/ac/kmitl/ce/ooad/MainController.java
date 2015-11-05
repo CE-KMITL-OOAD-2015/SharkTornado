@@ -140,6 +140,12 @@ public class MainController implements CommandLineRunner{
         return DashboardModel.getInstance().getVMStatus(UserModel.getInstance().getAccountById(userId), password, vmIP);
     }
 
+    @RequestMapping(value = "/bill/{userId}", params = {"password"})
+    @ResponseBody
+    public Bill getBill(@PathVariable String userId, @RequestParam("password") String password){
+        return BillModel.getInstance().getBillByUser(UserModel.getInstance().getAccountById(userId), password);
+    }
+
     @Override
     public void run(String... args) throws Exception {
         UserModel.getInstance().setRepo(userRepository);
