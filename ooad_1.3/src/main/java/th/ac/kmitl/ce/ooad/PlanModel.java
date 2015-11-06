@@ -17,7 +17,7 @@ public class PlanModel {
         return plan_controller;
     }
 
-    protected Plan[] getUserPlanByCloud(Account user, int cloudProv){
+    protected Plan[] getUserPlanByCloud(Account user, String cloudProv){
         return (Plan[]) vmProvider.getInstance().getPlanByCloudAccount(user.getCloudAccount(CloudProvider.toEnum(cloudProv))).toArray();
     }
 

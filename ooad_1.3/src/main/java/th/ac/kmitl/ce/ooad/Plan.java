@@ -19,4 +19,9 @@ public class Plan {
         this.network = network;
         this.storage = storage;
     }
+
+    public float getMonthlyRate() {
+        return monthlyRate;
+    }
+
 }

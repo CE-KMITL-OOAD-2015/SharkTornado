@@ -92,7 +92,7 @@ public class UserModel {
         return repo.findByUsername(username);
     }
 
-    protected boolean addCloudAccount(String userId, String password, int cloudProv, String cloudUsername, String cloudPassword) {
+    protected boolean addCloudAccount(String userId, String password, String cloudProv, String cloudUsername, String cloudPassword) {
         if (authenUser(getUserById(userId), password)) {
             CloudProvider cloudProvider = CloudProvider.toEnum(cloudProv);
             CloudAccount temp = new CloudAccount(cloudProvider, cloudUsername, cloudPassword);
@@ -110,7 +110,7 @@ public class UserModel {
         }
     }
 
-    protected boolean removeCloudAccount(String userId, String password, int cloudProv, String cloudUsername) {
+    protected boolean removeCloudAccount(String userId, String password, String cloudProv, String cloudUsername) {
         if (authenUser(getUserById(userId), password)) {
             CloudProvider cloudProvider = CloudProvider.toEnum(cloudProv);
             Account account_temp = repo.findByUserId(userId);

@@ -1,5 +1,7 @@
 package th.ac.kmitl.ce.ooad;
 
+import java.util.List;
+
 /**
  * Created by Nut on 10/23/2015.
  */
@@ -11,11 +13,11 @@ public class DashboardModel {
     public static DashboardModel getInstance(){
         return dashboardModel;
     }
-    protected Cloud[] getDashboard(Account user, String password){
+    protected List<Cloud> getDashboard(Account user, String password){
         if(UserModel.getInstance().authenUser(user.getUsername(), password)){
-            Cloud[] clouds = vmProvider.getInstance().getClouds(user);
-            Dashboard dashboard = new Dashboard(clouds);
-            System.out.println(dashboard.toString());
+            List<Cloud> clouds = vmProvider.getInstance().getClouds(user);
+            //Dashboard dashboard = new Dashboard(clouds);
+            //System.out.println(dashboard.toString());
             return clouds; //return
         }
         else return null;

@@ -100,7 +100,7 @@ public class MainController implements CommandLineRunner{
 
     @RequestMapping(value = "/plan/{userId}", params = {"password", "cloudProv"})
     @ResponseBody
-    public Plan[] requestUserPlanByCloudProv(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("cloudProv") int cloudProv){
+    public Plan[] requestUserPlanByCloudProv(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("cloudProv") String cloudProv){
         return PlanModel.getInstance().getUserPlanByCloud(UserModel.getInstance().getAccountById(userId), cloudProv);
     }
 
@@ -112,19 +112,19 @@ public class MainController implements CommandLineRunner{
 
     @RequestMapping(value = "/plan/removeCloudAccount/{userId}", params = {"password", "cloudProv", "cloudUsername"})
     @ResponseBody
-    public boolean removeCloudAccount(@PathVariable String userId, @RequestParam("cloudProv") int cloudProv, @RequestParam("password") String password, @RequestParam("cloudUsername") String cloudUsername){
+    public boolean removeCloudAccount(@PathVariable String userId, @RequestParam("cloudProv") String cloudProv, @RequestParam("password") String password, @RequestParam("cloudUsername") String cloudUsername){
         return UserModel.getInstance().removeCloudAccount(userId, password, cloudProv, cloudUsername);
     }
 
     @RequestMapping(value = "/plan/addCloudAccount/{userId}", params = {"cloudProv", "password", "cloudUsername", "cloudPassword"})
     @ResponseBody
-    public boolean addCloudAccount(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("cloudUsername") String cloudUsername, @RequestParam("cloudPassword") String cloudPassword, @RequestParam("cloudProv") int cloudProv){
+    public boolean addCloudAccount(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("cloudUsername") String cloudUsername, @RequestParam("cloudPassword") String cloudPassword, @RequestParam("cloudProv") String cloudProv){
         return UserModel.getInstance().addCloudAccount(userId, password, cloudProv, cloudUsername, cloudPassword);
     }
 
     @RequestMapping(value = "/dashboard/{userId}", params = "password")
     @ResponseBody
-    public Cloud[] getDashboard(@PathVariable String userId, @RequestParam("password") String password){
+    public List<Cloud> getDashboard(@PathVariable String userId, @RequestParam("password") String password){
         System.out.println("Dashboard is requested.");
         return DashboardModel.getInstance().getDashboard(UserModel.getInstance().getAccountById(userId), password);
     }
