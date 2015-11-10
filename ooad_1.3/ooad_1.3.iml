@@ -61,5 +61,6 @@
     <orderEntry type="library" name="Gradle: org.springframework.data:spring-data-commons:1.9.4.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.springframework.boot:spring-boot-starter-test:1.2.7.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.springframework:spring-test:4.1.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.codehaus.jackson:jackson-core-asl:1.9.13" level="project" />
   </component>
 </module>

@@ -143,6 +143,7 @@ public class MainController implements CommandLineRunner{
     @RequestMapping(value = "/bill/{userId}", params = {"password"})
     @ResponseBody
     public Bill getBill(@PathVariable String userId, @RequestParam("password") String password){
+        System.out.println("bill was requested.");
         return BillModel.getInstance().getBillByUser(UserModel.getInstance().getAccountById(userId), password);
     }
 

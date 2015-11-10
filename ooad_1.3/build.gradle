@@ -39,6 +39,8 @@ dependencies {
     compile 'org.mongodb:bson:3.0.4'
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
     testCompile("junit:junit")
+    compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
+
 }
 
 
