@@ -1,6 +1,7 @@
 package th.ac.kmitl.ce.ooad;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -212,6 +213,13 @@ public class vmProvider implements Provider {
     @Override
     public double getPrice(Plan plan) {
         return plan.monthlyRate;
+    }
+
+    @Override
+    public Report getVmReport(String vmIP, Date date) {
+        Report report = new Report("0.0.0.0", false);
+        report.setTimestamp(new Date());
+        return report;
     }
 
 }

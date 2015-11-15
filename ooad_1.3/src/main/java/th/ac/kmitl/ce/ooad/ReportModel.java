@@ -2,6 +2,7 @@ package th.ac.kmitl.ce.ooad;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -39,16 +40,19 @@ public class ReportModel {
     protected List<Report> getReportByMonth(String vmIP, String startMonth, String endMonth){
         List<Report> reports = repo.findByvmIP(vmIP);
         List<Report> re_reports = new ArrayList<>();
-        SimpleDateFormat formatter = new SimpleDateFormat("MMM yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
         Date startDate, endDate;
         try{
-            startDate = formatter.parse(startMonth);
-            endDate = formatter.parse(endMonth);
+            startDate = formatter.parse("01" + startMonth);
+            endDate = formatter.parse("28" + endMonth);
         }
         catch (Exception e){
             System.out.println("Method getReportByMonth's inputs error.");
             e.printStackTrace();
             return null;
+        }
+        if(reports.size() == 0){
+            fetchReports(vmIP, startDate);
         }
         for(Report report : reports){
             if(report.getTimestamp().after(startDate) && report.getTimestamp().before(endDate)){
@@ -56,6 +60,21 @@ public class ReportModel {
             }
         }
         return re_reports;
+    }
+
+    private void fetchReports(String vmIP, Date startDate){
+        Date today = new Date();
+        while(startDate.before(today)){
+            putVmReports(vmIP, startDate);
+            Calendar c = Calendar.getInstance();
+            c.setTime(startDate);
+            c.add(Calendar.MONTH, 1);
+            startDate = c.getTime();
+        }
+    }
+
+    protected void putVmReports(String vmIP, Date date){
+        repo.save(vmProvider.getInstance().getVmReport(vmIP, date));
     }
 /*
     protected List<Report> testReport(){

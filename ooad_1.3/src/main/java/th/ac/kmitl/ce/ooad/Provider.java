@@ -1,5 +1,6 @@
 package th.ac.kmitl.ce.ooad;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,4 +17,5 @@ public interface Provider {
     public Vm getVmStatus(CloudAccount cloudAccount, String vmIP);
     public Plan getPlanByVM(CloudAccount cloudAccount, String vmIP);
     double getPrice(Plan plan);
+    Report getVmReport(String vmIP, Date date);
 }
