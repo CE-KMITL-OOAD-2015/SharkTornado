@@ -1,5 +1,7 @@
 package th.ac.kmitl.ce.ooad;
 
+import java.util.List;
+
 /**
  * Created by Nut on 10/12/2015.
  */
@@ -136,6 +138,10 @@ public class UserModel {
             System.out.println("Failed to update email for " + getUserById(userId));
             return false;
         }
+    }
+
+    protected List<Account> getAllAccount(){
+        return repo.findAll();
     }
 
 }

@@ -12,19 +12,29 @@ public abstract class ReportTemplate {
     double[] mems;
     double[] networks;
     int[] storage;
-    Date date;
 
-    public ReportTemplate() {
+    public Date getTimestamp() {
+        return timestamp;
     }
 
-    public ReportTemplate(CloudProvider cloudProvider, int vmNumber, double[] cpus, double[] mems, double[] networks, int[] storage, Date date) {
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    Date timestamp;
+
+    public ReportTemplate() {
+        timestamp = new Date();
+    }
+
+    public ReportTemplate(CloudProvider cloudProvider, int vmNumber, double[] cpus, double[] mems, double[] networks, int[] storage) {
         this.cloudProvider = cloudProvider;
         this.vmNumber = vmNumber;
         this.cpus = cpus;
         this.mems = mems;
         this.networks = networks;
         this.storage = storage;
-        this.date = date;
+        this.timestamp = new Date();
     }
 
     public CloudProvider getCloudProvider() {

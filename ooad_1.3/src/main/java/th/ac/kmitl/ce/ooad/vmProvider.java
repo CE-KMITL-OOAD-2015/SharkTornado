@@ -165,12 +165,12 @@ public class vmProvider implements Provider {
     }
 
     @Override
-    public Cloud getCloudStatus(Account user, CloudProvider cloudProvider) {
-        return new Cloud(cloudProvider.toString(), null);
+    public Cloud getCloudStatus(CloudAccount cloudAccount) {
+        return new Cloud(cloudAccount.toString(), null);
     }
 
     @Override
-    public Vm getVmStatus(Account user, String vmIP){
+    public Vm getVmStatus(CloudAccount cloudAccount, String vmIP){
         double d = Math.random() * 1.7;
         int cpu = (int)Math.random()*100;
         int network = (int)Math.random()*300;

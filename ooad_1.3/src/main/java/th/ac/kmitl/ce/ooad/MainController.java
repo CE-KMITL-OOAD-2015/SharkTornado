@@ -4,6 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -134,10 +138,10 @@ public class MainController implements CommandLineRunner{
     public String handleFileUpload(@RequestParam("file") MultipleFile file){
     }*/
 
-    @RequestMapping(value = "/dashboard/{userId}", params = {"password", "vmIP"})
+    @RequestMapping(value = "/dashboard/{userId}", params = {"password", "vmIP", "cloudProv"})
     @ResponseBody
-    public Vm getVMStatus(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("vmIP") String vmIP){
-        return DashboardModel.getInstance().getVMStatus(UserModel.getInstance().getAccountById(userId), password, vmIP);
+    public Vm getVMStatus(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("vmIP") String vmIP,  @RequestParam("cloudProv") String cloudProv){
+        return DashboardModel.getInstance().getVMStatus(UserModel.getInstance().getAccountById(userId), password, cloudProv, vmIP);
     }
 
     @RequestMapping(value = "/bill/{userId}", params = {"password"})
@@ -145,6 +149,27 @@ public class MainController implements CommandLineRunner{
     public Bill getBill(@PathVariable String userId, @RequestParam("password") String password){
         System.out.println("bill was requested.");
         return BillModel.getInstance().getBillByUser(UserModel.getInstance().getAccountById(userId), password);
+    }
+
+    @RequestMapping(value = "/message", params = {"vmIP"})
+    @ResponseBody
+    public List<Message> getMessage(@RequestParam("vmIP") String vmIP){
+        return MessageModel.getInstance().checkMessage(vmIP);
+    }
+
+    @RequestMapping(value = "/test")
+    @ResponseBody
+    public Date test(){
+        String month = "Jan 2015";
+        SimpleDateFormat formatter = new SimpleDateFormat("MMM yyyy");
+        try{
+            Date date = formatter.parse(month);
+            System.out.println(date);
+            return date;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
