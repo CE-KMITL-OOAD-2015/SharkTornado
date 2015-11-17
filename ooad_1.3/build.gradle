@@ -20,7 +20,7 @@ apply plugin: 'io.spring.dependency-management'
 
 jar {
     baseName = 'ooad'
-    version = '2.5-3000'
+    version = '2.6-3000'
 }
 sourceCompatibility = 1.8
 targetCompatibility = 1.8

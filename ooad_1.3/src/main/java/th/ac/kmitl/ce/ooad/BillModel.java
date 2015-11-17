@@ -1,5 +1,6 @@
 package th.ac.kmitl.ce.ooad;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +23,18 @@ public class BillModel {
                 bill.total += getPriceByPlan(plan);
             }
             bill.plans = plans;
+        }
+        return bill;
+    }
+
+    protected Bill getLatestBillByVm(Account user, String vmIP, String password, String cloudProvider){
+        Bill bill = new Bill();
+        if(UserModel.getInstance().authenUser(user.getUsername(), password)){
+            Plan plan = PlanModel.getInstance().getVmPlan(user, password, vmIP, cloudProvider);
+            List<Plan> plans = new ArrayList<>();
+            if(plan != null) plans.add(plan);
+            bill.setPlans(plans);
+            bill.setTotal(getPriceByPlan(plan));
         }
         return bill;
     }

@@ -1,6 +1,7 @@
 package th.ac.kmitl.ce.ooad;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -165,12 +166,12 @@ public class vmProvider implements Provider {
     }
 
     @Override
-    public Cloud getCloudStatus(Account user, CloudProvider cloudProvider) {
-        return new Cloud(cloudProvider.toString(), null);
+    public Cloud getCloudStatus(CloudAccount cloudAccount) {
+        return new Cloud(cloudAccount.toString(), null);
     }
 
     @Override
-    public Vm getVmStatus(Account user, String vmIP){
+    public Vm getVmStatus(CloudAccount cloudAccount, String vmIP){
         double d = Math.random() * 1.7;
         int cpu = (int)Math.random()*100;
         int network = (int)Math.random()*300;
@@ -211,7 +212,15 @@ public class vmProvider implements Provider {
 
     @Override
     public double getPrice(Plan plan) {
-        return plan.monthlyRate;
+        if(plan != null) return plan.monthlyRate;
+        else return 0.0;
+    }
+
+    @Override
+    public Report getVmReport(String vmIP, Date date) {
+        Report report = new Report("0.0.0.0");
+        //report.setTimestamp(new Date());
+        return report;
     }
 
 }

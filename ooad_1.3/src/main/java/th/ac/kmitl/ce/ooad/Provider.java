@@ -1,5 +1,6 @@
 package th.ac.kmitl.ce.ooad;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,8 +12,10 @@ public interface Provider {
     public List<Plan> getPlanByCloudAccount(CloudAccount cloudAccount);
     public Plan[] getPlanByCloudProv(CloudProvider provider);
     public void changePlan(Account user, Plan newPlan, CloudProvider cloudProvider, String ip);
-    public Cloud getCloudStatus(Account user, CloudProvider cloudProvider);
-    public Vm getVmStatus(Account user, String vmIP);
+    public Cloud getCloudStatus(CloudAccount cloudAccount);
+
+    public Vm getVmStatus(CloudAccount cloudAccount, String vmIP);
     public Plan getPlanByVM(CloudAccount cloudAccount, String vmIP);
     double getPrice(Plan plan);
+    Report getVmReport(String vmIP, Date date);
 }

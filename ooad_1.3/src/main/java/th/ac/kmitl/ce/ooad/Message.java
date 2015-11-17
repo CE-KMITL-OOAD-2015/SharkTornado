@@ -9,10 +9,11 @@ public class Message {
     String topic;
     String detail;
 
-    public Message(CloudProvider cloudProvider, String vm, String detail) {
+    public Message(CloudProvider cloudProvider, String vm, String detail, String topic) {
         this.cloudProvider = cloudProvider;
         this.vm = vm;
         this.detail = detail;
+        this.topic = topic;
     }
 
     public Message() {
@@ -40,5 +41,13 @@ public class Message {
 
     public void setDetail(String detail) {
         this.detail = detail;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
     }
 }

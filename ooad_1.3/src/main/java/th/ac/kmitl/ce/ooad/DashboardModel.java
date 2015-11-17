@@ -23,10 +23,9 @@ public class DashboardModel {
         else return null;
     }
 
-    protected Vm getVMStatus(Account user, String password, String vmIP){
+    protected Vm getVMStatus(Account user, String password, String cloudProv, String vmIP){
         if(UserModel.getInstance().authenUser(user.getUsername(), password)){
-            Vm vm = vmProvider.getInstance().getVmStatus(user, vmIP);
-            return vm;
+            return vmProvider.getInstance().getVmStatus(user.getCloudAccount(CloudProvider.toEnum(cloudProv)), vmIP);
         }
         else return null;
     }
