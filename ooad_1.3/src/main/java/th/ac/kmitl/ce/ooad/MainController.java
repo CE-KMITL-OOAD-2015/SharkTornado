@@ -67,6 +67,24 @@ public class MainController implements CommandLineRunner{
         return UserModel.getInstance().getAccountById(userId);
     }
 
+    @RequestMapping(value = "/request/profile/user/{userId}", params = "password")
+    @ResponseBody
+    public Profile getProfile(@PathVariable String userId, @RequestParam("password") String password){
+        if(UserModel.getInstance().authenUser(UserModel.getInstance().getAccountById(userId).getUsername(), password))
+            return UserModel.getInstance().getAccountById(userId).getProfile();
+        else
+            return null;
+    }
+
+    @RequestMapping(value = "/request/profile/{username}", params = "password")
+    @ResponseBody
+    public Profile getProfileByUsername(@PathVariable String username, @RequestParam("password") String password){
+        if(UserModel.getInstance().authenUser(username, password))
+            return UserModel.getInstance().getAccountByUsername(username).getProfile();
+        else
+            return null;
+    }
+
     @RequestMapping(value = "/update/name/{username}", params = {"name", "password"})
     public boolean updateName(@PathVariable String username, @RequestParam("name") String name, @RequestParam("password") String pwd){
         return UserModel.getInstance().updateName(username, name);
@@ -170,6 +188,34 @@ public class MainController implements CommandLineRunner{
             e.printStackTrace();
         }
         return null;
+    }
+
+    @RequestMapping(value = "/report/{userId}", params = {"password", "vmIP"})
+    @ResponseBody
+    public List<Report> getReport(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("vmIP") String vmIP){
+        if(UserModel.getInstance().authenUser(UserModel.getInstance().getAccountById(userId).getUsername(), password))
+            return ReportModel.getInstance().getAlltoPayReports(vmIP);
+        else
+            return null;
+    }
+
+    @RequestMapping(value = "/report/all/{userId}", params = {"password", "vmIP"})
+    @ResponseBody
+    public List<Report> getAllReport(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("vmIP") String vmIP){
+        if(UserModel.getInstance().authenUser(UserModel.getInstance().getAccountById(userId).getUsername(), password))
+            return ReportModel.getInstance().getAllVmReports(vmIP);
+        else
+            return null;
+    }
+
+    @RequestMapping(value = "/report/{year}/{userId}", params = {"password", "vmIP", "start", "end"})
+    @ResponseBody
+    public List<Report> getReportByMonth(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("vmIP") String vmIP,
+                                         @PathVariable String year, @RequestParam("start") String start, @RequestParam("end") String end){
+        if(UserModel.getInstance().authenUser(UserModel.getInstance().getAccountById(userId).getUsername(), password))
+            return ReportModel.getInstance().getReportByMonth(vmIP, start, end);
+        else
+            return null;
     }
 
     @Override

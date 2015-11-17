@@ -6,11 +6,20 @@ package th.ac.kmitl.ce.ooad;
 public class Profile {
     public String name, email, Image, password;
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Profile(String email, String name, String Image, String password) {
         this.email = email;
         this.name = name;
         this.Image = Image;
         this.password = password;
+
     }
 
     public String getEmail() {
