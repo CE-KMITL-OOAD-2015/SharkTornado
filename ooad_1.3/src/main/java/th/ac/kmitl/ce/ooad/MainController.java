@@ -22,14 +22,14 @@ public class MainController implements CommandLineRunner{
 
     @RequestMapping(value = "/")
     @ResponseBody
-    public boolean isRunning(){
+    public boolean isRunning() {
         return true;
     }
 
     @RequestMapping(value = "/addUser/{username}/{name}", params = {"email", "password", "imgLocation"})
     @ResponseBody
     public boolean addUser(@PathVariable String username,@RequestParam("password") String passphrase,
-                           @PathVariable String name, @RequestParam("email") String email, @RequestParam("imgLocation") String imgLoc){
+                           @PathVariable String name, @RequestParam("email") String email, @RequestParam("imgLocation") String imgLoc) {
         System.out.println("Add " + username);
         try {
             return UserModel.getInstance().addUser(username, passphrase, name, email, imgLoc);
