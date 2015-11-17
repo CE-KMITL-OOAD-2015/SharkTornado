@@ -1,5 +1,6 @@
 package th.ac.kmitl.ce.ooad;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,8 +31,10 @@ public class BillModel {
         Bill bill = new Bill();
         if(UserModel.getInstance().authenUser(user.getUsername(), password)){
             Plan plan = PlanModel.getInstance().getVmPlan(user, password, vmIP, cloudProvider);
-            bill.plans.add(plan);
-            bill.total = getPriceByPlan(plan);
+            List<Plan> plans = new ArrayList<>();
+            if(plan != null) plans.add(plan);
+            bill.setPlans(plans);
+            bill.setTotal(getPriceByPlan(plan));
         }
         return bill;
     }

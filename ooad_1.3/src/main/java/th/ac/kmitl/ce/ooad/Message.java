@@ -42,4 +42,12 @@ public class Message {
     public void setDetail(String detail) {
         this.detail = detail;
     }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
 }

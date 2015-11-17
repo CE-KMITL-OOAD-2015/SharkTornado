@@ -7,29 +7,18 @@ import java.util.Date;
  */
 public abstract class ReportTemplate {
     CloudProvider cloudProvider;
-    int vmNumber;
     double[] cpus;
     double[] mems;
     double[] networks;
     int[] storage;
-
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
-    }
-
     Date timestamp;
 
     public ReportTemplate() {
         timestamp = new Date();
     }
 
-    public ReportTemplate(CloudProvider cloudProvider, int vmNumber, double[] cpus, double[] mems, double[] networks, int[] storage) {
+    public ReportTemplate(CloudProvider cloudProvider, double[] cpus, double[] mems, double[] networks, int[] storage) {
         this.cloudProvider = cloudProvider;
-        this.vmNumber = vmNumber;
         this.cpus = cpus;
         this.mems = mems;
         this.networks = networks;
@@ -43,14 +32,6 @@ public abstract class ReportTemplate {
 
     public void setCloudProvider(CloudProvider cloudProvider) {
         this.cloudProvider = cloudProvider;
-    }
-
-    public int getVmNumber() {
-        return vmNumber;
-    }
-
-    public void setVmNumber(int vmNumber) {
-        this.vmNumber = vmNumber;
     }
 
     public double[] getCpus() {
@@ -83,5 +64,13 @@ public abstract class ReportTemplate {
 
     public void setStorage(int[] storage) {
         this.storage = storage;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 }

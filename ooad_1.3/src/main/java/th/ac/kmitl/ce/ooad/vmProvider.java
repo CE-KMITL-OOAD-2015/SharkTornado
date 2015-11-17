@@ -212,13 +212,14 @@ public class vmProvider implements Provider {
 
     @Override
     public double getPrice(Plan plan) {
-        return plan.monthlyRate;
+        if(plan != null) return plan.monthlyRate;
+        else return 0.0;
     }
 
     @Override
     public Report getVmReport(String vmIP, Date date) {
         Report report = new Report("0.0.0.0");
-        report.setTimestamp(new Date());
+        //report.setTimestamp(new Date());
         return report;
     }
 

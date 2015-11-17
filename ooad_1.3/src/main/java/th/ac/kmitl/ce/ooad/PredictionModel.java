@@ -21,8 +21,8 @@ public class PredictionModel {
         int[] maxStorage = {0};
         double[] maxNetwork = {0};
         Prediction prediction = new Prediction();
-        prediction.setTimestamp(new Date());
-        prediction.setCloudProvider(reports.get(0).getCloudProvider());
+        //prediction.setTimestamp(new Date());
+        //prediction.setCloudProvider(reports.get(0).getCloudProvider());
         for(Report report : reports){
             double temp_cpu = findMax(report.getCpus());
             double temp_mem = findMax(report.getMems());

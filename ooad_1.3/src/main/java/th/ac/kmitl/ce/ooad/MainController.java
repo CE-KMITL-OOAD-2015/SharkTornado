@@ -169,7 +169,7 @@ public class MainController implements CommandLineRunner{
         return BillModel.getInstance().getBillByUser(UserModel.getInstance().getAccountById(userId), password);
     }
 
-    @RequestMapping(value = "/bill/{userId}", params = {"password", "vmIP", "cloudProv"})
+    @RequestMapping(value = "/bill/vm/{userId}", params = {"password", "vmIP", "cloudProv"})
     @ResponseBody
     public Bill getBillByVm(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("vmIP") String vmIP, @RequestParam("cloudProv") String cloudProv){
         System.out.println("bill was requested.");
@@ -182,20 +182,11 @@ public class MainController implements CommandLineRunner{
         return MessageModel.getInstance().checkMessage(vmIP);
     }
 
-/*    @RequestMapping(value = "/test")
+    @RequestMapping(value = "/test")
     @ResponseBody
-    public Date test(){
-        String month = "Jan 2015";
-        SimpleDateFormat formatter = new SimpleDateFormat("MMM yyyy");
-        try{
-            Date date = formatter.parse(month);
-            System.out.println(date);
-            return date;
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }*/
+    public String test(){
+        return ReportModel.getInstance().testReport("1.1.1.1", "01 2015", "02 2015");
+    }
 
     @RequestMapping(value = "/report/all/{userId}", params = {"password", "vmIP"})
     @ResponseBody
@@ -206,10 +197,10 @@ public class MainController implements CommandLineRunner{
             return null;
     }
 
-    @RequestMapping(value = "/report/{year}/{userId}", params = {"password", "vmIP", "start", "end"})
+    @RequestMapping(value = "/report/{userId}", params = {"password", "vmIP", "start", "end"})
     @ResponseBody
     public List<Report> getReportByMonth(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("vmIP") String vmIP,
-                                         @PathVariable String year, @RequestParam("start") String start, @RequestParam("end") String end){
+                                         @RequestParam("start") String start, @RequestParam("end") String end){
         if(UserModel.getInstance().authenUser(UserModel.getInstance().getAccountById(userId).getUsername(), password))
             return ReportModel.getInstance().getReportByMonth(vmIP, start, end);
         else

@@ -38,13 +38,14 @@ public class ReportModel {
     }*/
 
     protected List<Report> getReportByMonth(String vmIP, String startMonth, String endMonth){
+        repo.save(new Report(vmIP));
         List<Report> reports = repo.findByvmIP(vmIP);
         List<Report> re_reports = new ArrayList<>();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd MM yyyy");
         Date startDate, endDate;
         try{
-            startDate = formatter.parse("01" + startMonth);
-            endDate = formatter.parse("28" + endMonth);
+            startDate = formatter.parse("1 " + startMonth);
+            endDate = formatter.parse("28 " + endMonth);
         }
         catch (Exception e){
             System.out.println("Method getReportByMonth's inputs error.");
@@ -75,6 +76,24 @@ public class ReportModel {
 
     protected void putVmReports(String vmIP, Date date){
         repo.save(vmProvider.getInstance().getVmReport(vmIP, date));
+    }
+
+    protected String testReport(String vmIP, String start, String end){
+        Report report = new Report(vmIP);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd MM yyyy");
+        Date startDate, endDate;
+        try{
+            startDate = formatter.parse("1 " + start);
+            endDate = formatter.parse("28 " + end);
+        }
+        catch (Exception e){
+            System.out.println("Method getReportByMonth's inputs error.");
+            e.printStackTrace();
+            return null;
+        }
+        report.setTimestamp(startDate);
+        System.out.println("return Report");
+        return startDate.toString();
     }
 /*
     protected List<Report> testReport(){
