@@ -4,17 +4,14 @@ package th.ac.kmitl.ce.ooad;
  */
 public class Report extends ReportTemplate{
     String vmIP;
-    boolean isPaid;
 
-    public Report(String vmIP, boolean isPaid) {
+    public Report(String vmIP) {
         this.vmIP = vmIP;
-        this.isPaid = isPaid;
     }
 
-    public Report(CloudProvider cloudProvider, int vmNumber, double[] cpus, double[] mems, double[] networks, int[] storage, String vmIP, boolean isPaid) {
+    public Report(CloudProvider cloudProvider, int vmNumber, double[] cpus, double[] mems, double[] networks, int[] storage, String vmIP) {
         super(cloudProvider, vmNumber, cpus, mems, networks, storage);
         this.vmIP = vmIP;
-        this.isPaid = isPaid;
     }
 
     public String getVmIP() {
@@ -25,11 +22,4 @@ public class Report extends ReportTemplate{
         this.vmIP = vmIP;
     }
 
-    public boolean isPaid() {
-        return isPaid;
-    }
-
-    public void setPaid(boolean paid) {
-        isPaid = paid;
-    }
 }

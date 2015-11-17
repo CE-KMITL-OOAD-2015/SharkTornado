@@ -169,13 +169,20 @@ public class MainController implements CommandLineRunner{
         return BillModel.getInstance().getBillByUser(UserModel.getInstance().getAccountById(userId), password);
     }
 
+    @RequestMapping(value = "/bill/{userId}", params = {"password", "vmIP", "cloudProv"})
+    @ResponseBody
+    public Bill getBillByVm(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("vmIP") String vmIP, @RequestParam("cloudProv") String cloudProv){
+        System.out.println("bill was requested.");
+        return BillModel.getInstance().getLatestBillByVm(UserModel.getInstance().getAccountById(userId), vmIP, password, cloudProv);
+    }
+
     @RequestMapping(value = "/message", params = {"vmIP"})
     @ResponseBody
     public List<Message> getMessage(@RequestParam("vmIP") String vmIP){
         return MessageModel.getInstance().checkMessage(vmIP);
     }
 
-    @RequestMapping(value = "/test")
+/*    @RequestMapping(value = "/test")
     @ResponseBody
     public Date test(){
         String month = "Jan 2015";
@@ -188,16 +195,7 @@ public class MainController implements CommandLineRunner{
             e.printStackTrace();
         }
         return null;
-    }
-
-    @RequestMapping(value = "/report/{userId}", params = {"password", "vmIP"})
-    @ResponseBody
-    public List<Report> getReport(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("vmIP") String vmIP){
-        if(UserModel.getInstance().authenUser(UserModel.getInstance().getAccountById(userId).getUsername(), password))
-            return ReportModel.getInstance().getAlltoPayReports(vmIP);
-        else
-            return null;
-    }
+    }*/
 
     @RequestMapping(value = "/report/all/{userId}", params = {"password", "vmIP"})
     @ResponseBody

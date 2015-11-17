@@ -217,7 +217,7 @@ public class vmProvider implements Provider {
 
     @Override
     public Report getVmReport(String vmIP, Date date) {
-        Report report = new Report("0.0.0.0", false);
+        Report report = new Report("0.0.0.0");
         report.setTimestamp(new Date());
         return report;
     }

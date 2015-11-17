@@ -28,14 +28,14 @@ public class ReportModel {
         return repo.findByvmIP(vmIP);
     }
 
-    protected List<Report> getAlltoPayReports(String vmIP){
+/*    protected List<Report> getAlltoPayReports(String vmIP){
         List<Report> reports = repo.findByvmIP(vmIP);
         List<Report> re_reports = new ArrayList<>();
         for(Report report : reports){
             if(!report.isPaid()) re_reports.add(report);
         }
         return re_reports;
-    }
+    }*/
 
     protected List<Report> getReportByMonth(String vmIP, String startMonth, String endMonth){
         List<Report> reports = repo.findByvmIP(vmIP);

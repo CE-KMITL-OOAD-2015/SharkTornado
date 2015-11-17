@@ -26,6 +26,16 @@ public class BillModel {
         return bill;
     }
 
+    protected Bill getLatestBillByVm(Account user, String vmIP, String password, String cloudProvider){
+        Bill bill = new Bill();
+        if(UserModel.getInstance().authenUser(user.getUsername(), password)){
+            Plan plan = PlanModel.getInstance().getVmPlan(user, password, vmIP, cloudProvider);
+            bill.plans.add(plan);
+            bill.total = getPriceByPlan(plan);
+        }
+        return bill;
+    }
+
     protected double getPriceByPlan(Plan plan){
         return vmProvider.getInstance().getPrice(plan);
     }
