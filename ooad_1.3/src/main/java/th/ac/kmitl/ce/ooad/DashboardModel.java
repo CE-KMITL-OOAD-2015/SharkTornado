@@ -25,7 +25,14 @@ public class DashboardModel {
 
     protected Vm getVMStatus(Account user, String password, String cloudProv, String vmIP){
         if(UserModel.getInstance().authenUser(user.getUsername(), password)){
-            return vmProvider.getInstance().getVmStatus(user.getCloudAccount(CloudProvider.toEnum(cloudProv)), vmIP);
+            Vm vm = vmProvider.getInstance().getVmStatus(user.
+                    getCloudAccount(CloudProvider.toEnum(cloudProv)), vmIP);
+            vm.Cpu = (vm.Cpu*100)/vm.rCpu;
+            vm.Mem = (vm.Mem*100)/vm.rMem;
+            vm.Storage = (vm.Storage*100)/vm.rStorage;
+            vm.Network = (vm.Network*100)/vm.rNetwork;
+
+            return vm;
         }
         else return null;
     }

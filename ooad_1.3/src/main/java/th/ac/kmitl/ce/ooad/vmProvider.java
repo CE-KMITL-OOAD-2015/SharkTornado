@@ -286,11 +286,6 @@ public class vmProvider implements Provider {
             }
         });
 
-        vm[0].Cpu = (vm[0].Cpu*100)/vm[0].rCpu;
-        vm[0].Mem = (vm[0].Mem*100)/vm[0].rMem;
-        vm[0].Storage = (vm[0].Storage*100)/vm[0].rStorage;
-        vm[0].Network = (vm[0].Network*100)/vm[0].rNetwork;
-
         return vm[0];
     }
 
