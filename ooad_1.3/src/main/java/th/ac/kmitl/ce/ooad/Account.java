@@ -37,7 +37,7 @@ public class Account {
 
     }
 
-    public CloudAccount getCloudAccounts(CloudProvider cloudProvider) {
+    public CloudAccount getCloudAccount(CloudProvider cloudProvider) {
         for(CloudAccount temp : cloudAccounts){
             if (temp.getCloudProv() == cloudProvider) return temp;
         }

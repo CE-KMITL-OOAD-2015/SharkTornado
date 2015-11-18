@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
         classpath('io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE')
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.7.RELEASE")
     }
 }
 
@@ -19,7 +20,7 @@ apply plugin: 'io.spring.dependency-management'
 
 jar {
     baseName = 'ooad'
-    version = '2.1'
+    version = '2.6-3000'
 }
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -30,13 +31,17 @@ repositories {
 
 
 dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
     compile('org.springframework.boot:spring-boot-starter-actuator')
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.json:json:20090211')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     compile 'org.mongodb:mongo-java-driver:3.0.4'
     compile 'org.mongodb:bson:3.0.4'
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
     testCompile("junit:junit")
+    compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
+
 }
 
 

@@ -4,12 +4,22 @@ package th.ac.kmitl.ce.ooad;
  * Created by Nut on 10/12/2015.
  */
 public class Profile {
-    public String email, name, imgLoc;
+    public String name, email, Image, password;
 
-    public Profile(String email, String name, String imgLoc) {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Profile(String email, String name, String Image, String password) {
         this.email = email;
         this.name = name;
-        this.imgLoc = imgLoc;
+        this.Image = Image;
+        this.password = password;
+
     }
 
     public String getEmail() {
@@ -28,15 +38,15 @@ public class Profile {
         this.name = name;
     }
 
-    public String getImgLoc() {
-        return imgLoc;
+    public String getImage() {
+        return Image;
     }
 
-    public void setImgLoc(String imgLoc) {
-        this.imgLoc = imgLoc;
+    public void setImage(String image) {
+        this.Image = image;
     }
 
     public String toString(){
-        return String.format("Name=%s, email=%s, imgLocation=%s", name, email, imgLoc);
+        return String.format("Name=%s, email=%s, imgLocation=%s", name, email, Image);
     }
 }

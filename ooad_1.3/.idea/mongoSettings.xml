@@ -11,6 +11,13 @@
             </list>
           </option>
         </ServerConfiguration>
+        <ServerConfiguration>
+          <option name="serverUrls">
+            <list>
+              <option value="203.151.92.185:27017" />
+            </list>
+          </option>
+        </ServerConfiguration>
       </list>
     </option>
   </component>

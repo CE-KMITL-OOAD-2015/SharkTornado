@@ -1,6 +1,7 @@
 package th.ac.kmitl.ce.ooad;
 
-import java.util.ArrayList;
+import th.ac.kmitl.ce.ooad.Vm;
+
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ public class Cloud {
 
     public Cloud(String cloudName, List<Vm> vms) {
         this.cloudName = cloudName;
-        Vms = new ArrayList<>();
+        Vms = vms;
     }
 
 
@@ -22,5 +23,21 @@ public class Cloud {
 
     public void addVm(Vm vm) {
         Vms.add(vm);
+    }
+
+    public void setCloudName(String cloudName) {
+        this.cloudName = cloudName;
+    }
+
+    public void setVms(List<Vm> vms) {
+        Vms = vms;
+    }
+
+    public String toString(){
+        String vms = "\n";
+        for(Vm vm : Vms){
+            vms += "\t" + vm.toString() + "\n";
+        }
+        return cloudName + vms;
     }
 }

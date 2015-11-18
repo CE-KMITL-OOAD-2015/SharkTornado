@@ -10,5 +10,23 @@ public class Dashboard {
         this.clouds = clouds;
     }
 
+    public Dashboard(){
 
+    }
+
+    public Cloud[] getClouds() {
+        return clouds;
+    }
+
+    public void setClouds(Cloud[] clouds) {
+        this.clouds = clouds;
+    }
+
+    public String toString(){
+        String re = "";
+        for(Cloud cloud : clouds){
+            re += cloud.toString() + "\n";
+        }
+        return re;
+    }
 }
