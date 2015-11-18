@@ -25,7 +25,7 @@ public class Vm {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return vmIP;
     }
 

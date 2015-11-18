@@ -9,9 +9,9 @@ import java.util.List;
 public interface Provider {
     public List<Cloud> getClouds(Account user);
 //    public Plan[] getPlanByUser(Account user);
-    public List<Plan> getPlanByCloudAccount(CloudAccount cloudAccount);
+    public List<Plan> getPlanByCloudAccount(Account account, String cloudProv);
     public Plan[] getPlanByCloudProv(CloudProvider provider);
-    public void changePlan(Account user, Plan newPlan, CloudProvider cloudProvider, String ip);
+    public void changePlan(Account user, int newPlan, CloudProvider cloudProvider, String ip);
     public Cloud getCloudStatus(CloudAccount cloudAccount);
 
     public Vm getVmStatus(CloudAccount cloudAccount, String vmIP);
