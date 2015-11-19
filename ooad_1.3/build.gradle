@@ -19,8 +19,8 @@ apply plugin: 'spring-boot'
 apply plugin: 'io.spring.dependency-management' 
 
 jar {
-    baseName = 'ooad'
-    version = 'final-port_3000'
+    baseName = 'ooad-monitor'
+    version = 'final-port_4000'
 }
 sourceCompatibility = 1.8
 targetCompatibility = 1.8

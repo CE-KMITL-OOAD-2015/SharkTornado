@@ -105,6 +105,11 @@ public class MonitoringModel {
             for(int i = 0; i < 20; i++) System.out.println();
             System.out.println("Monitoring running");
             checkAllVmReport();
+            try{
+                checkAllUserCloud();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 }
