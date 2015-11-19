@@ -214,48 +214,48 @@ public class vmProvider implements Provider {
                         new Document("provider", "GOOGLE").append("planNum", newPlan)
                 );
 
-                iterable.forEach((Block<Document>) document -> {
-                    newId[0] = document.getObjectId("_id");
-                });
+                iterable.forEach((Block<Document>) document -> newId[0] = document.getObjectId("_id"));
+
+                break;
             }
             case AMAZON: {
                 FindIterable<Document> iterable = db.getCollection("plans").find(
                         new Document("provider", "AMAZON").append("planNum", newPlan)
                 );
 
-                iterable.forEach((Block<Document>) document -> {
-                    newId[0] = document.getObjectId("_id");
-                });
+                iterable.forEach((Block<Document>) document -> newId[0] = document.getObjectId("_id"));
+
+                break;
             }
             case DIGITAL_OCEAN: {
                 FindIterable<Document> iterable = db.getCollection("plans").find(
                         new Document("provider", "DIGITAL_OCEAN").append("planNum", newPlan)
                 );
 
-                iterable.forEach((Block<Document>) document -> {
-                    newId[0] = document.getObjectId("_id");
-                });
+                iterable.forEach((Block<Document>) document -> newId[0] = document.getObjectId("_id"));
+
+                break;
             }
             case AZURE: {
                 FindIterable<Document> iterable = db.getCollection("plans").find(
                         new Document("provider", "AZURE").append("planNum", newPlan)
                 );
 
-                iterable.forEach((Block<Document>) document -> {
-                    newId[0] = document.getObjectId("_id");
-                });
+                iterable.forEach((Block<Document>) document -> newId[0] = document.getObjectId("_id"));
+
+                break;
             }
             case VMWARE: {
                 FindIterable<Document> iterable = db.getCollection("plans").find(
                         new Document("provider", "VMWARE").append("planNum", newPlan)
                 );
 
-                iterable.forEach((Block<Document>) document -> {
-                    newId[0] = document.getObjectId("_id");
-                });
+                iterable.forEach((Block<Document>) document -> newId[0] = document.getObjectId("_id"));
+
+                break;
             }
             default: {
-
+                break;
             }
         }
 
