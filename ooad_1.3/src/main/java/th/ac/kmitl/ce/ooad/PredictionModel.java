@@ -29,7 +29,18 @@ public class PredictionModel {
         double max_net = 0.0;
         int max_str = 0;
 
-        Report report = reports.get(0);
+        Report report = new Report();
+
+        try{
+            for(Report temp : reports){
+                if(temp != null){
+                    report = temp;
+                    break;
+                }
+            }
+        } catch(Exception e){
+            System.out.println("GOT CHA!!!!");
+        }
         double temp_cpu = findMax(report.getCpus());
         double temp_mem = findMax(report.getMems());
         double temp_net = findMax(report.getNetworks());
