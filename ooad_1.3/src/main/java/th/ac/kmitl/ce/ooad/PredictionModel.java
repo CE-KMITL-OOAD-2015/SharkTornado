@@ -1,5 +1,6 @@
 package th.ac.kmitl.ce.ooad;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -7,33 +8,41 @@ import java.util.List;
  * Created by Nut on 10/29/2015.
  */
 public class PredictionModel {
-    private PredictionModel predictionModel = new PredictionModel();
+    private static PredictionModel predictionModel = new PredictionModel();
     private PredictionModel() {
     }
 
-    public PredictionModel getInstance(){
+    public static PredictionModel getInstance(){
         return predictionModel;
     }
 
     protected Prediction genPrediction(List<Report> reports){
-        double[] maxCPU = {0.0};
-        double[] maxMem = {0.0};
-        int[] maxStorage = {0};
-        double[] maxNetwork = {0};
+        List<Double> maxCPU = new ArrayList<>();
+        List<Double> maxMem = new ArrayList<>();
+        List<Integer> maxStorage = new ArrayList<>();
+        List<Double> maxNetwork = new ArrayList<>();
+
         Prediction prediction = new Prediction();
-        //prediction.setTimestamp(new Date());
-        //prediction.setCloudProvider(reports.get(0).getCloudProvider());
-        for(Report report : reports){
-            double temp_cpu = findMax(report.getCpus());
-            double temp_mem = findMax(report.getMems());
-            double temp_network = findMax(report.getNetworks());
-            if(temp_cpu > maxCPU[0]) maxCPU[0] = temp_cpu;
-            if(temp_mem > maxMem[0]) maxMem[0] = temp_mem;
-            if(temp_network > maxNetwork[0]) maxNetwork[0] = temp_network;
-            for(int storage : report.getStorage()){
-                if(storage > maxStorage[0]) maxStorage[0] = storage;
-            }
-        }
+
+        double max_cpu = 0.0;
+        double max_mem = 0.0;
+        double max_net = 0.0;
+        int max_str = 0;
+
+        Report report = reports.get(0);
+        double temp_cpu = findMax(report.getCpus());
+        double temp_mem = findMax(report.getMems());
+        double temp_net = findMax(report.getNetworks());
+        int temp_str = findIntMax(report.getStorage());
+
+        if(temp_cpu > max_cpu) max_cpu = temp_cpu;
+        if(temp_mem > max_mem) max_mem = temp_mem;
+        if(temp_net > max_net) max_net = temp_net;
+        if(temp_str > max_str) max_str = temp_str;
+        maxCPU.add(max_cpu*1.4);
+        maxMem.add(max_mem*1.4);
+        maxNetwork.add(max_net*1.4);
+        maxStorage.add(max_str);
 
         prediction.setCpus(maxCPU);
         prediction.setMems(maxMem);
@@ -41,13 +50,21 @@ public class PredictionModel {
         prediction.setStorage(maxStorage);
 
         return prediction;
+
     }
 
-    private double findMax(double[] values){
+    private double findMax(List<Double> values){
         double re_double = 0.0;
-        for(int i = 0; i < values.length; i++){
-            if(values[i] > re_double) re_double = values[i];
+        for(Double d : values){
+            if(d > re_double) re_double = d;
         }
         return re_double;
+    }
+    private int findIntMax(List<Integer> values){
+        int re = 0;
+        for(Integer d : values){
+            if(d > re) re = d;
+        }
+        return re;
     }
 }

@@ -1,6 +1,7 @@
 package th.ac.kmitl.ce.ooad;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 
@@ -18,7 +19,7 @@ public class Report extends ReportTemplate{
         this.vmIP = vmIP;
     }
 
-    public Report(CloudProvider cloudProvider, double[] cpus, double[] mems, double[] networks, int[] storage, Date timestamp, String vmIP) {
+    public Report(CloudProvider cloudProvider, List<Double> cpus, List<Double> mems, List<Double> networks, List<Integer> storage, String vmIP) {
         super(cloudProvider, cpus, mems, networks, storage);
         this.vmIP = vmIP;
     }

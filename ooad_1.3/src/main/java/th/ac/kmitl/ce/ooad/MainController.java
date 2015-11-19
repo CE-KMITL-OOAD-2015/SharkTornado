@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +29,12 @@ public class MainController implements CommandLineRunner{
     @ResponseBody
     public boolean isRunning() {
         return true;
+    }
+
+    @RequestMapping(value = "/monitor")
+    @ResponseBody
+    public void monitor() {
+        MonitoringModel.getInstance().run();
     }
 
     @RequestMapping(value = "/addUser/{username}/{name}", params = {"email", "password", "imgLocation"})
@@ -85,15 +92,15 @@ public class MainController implements CommandLineRunner{
             return null;
     }
 
-    @RequestMapping(value = "/update/name/{username}", params = {"name", "password"})
-    public boolean updateName(@PathVariable String username, @RequestParam("name") String name, @RequestParam("password") String pwd){
-        return UserModel.getInstance().updateName(username, name);
+    @RequestMapping(value = "/update/name/{userId}", params = {"name", "password"})
+    public boolean updateName(@PathVariable String userId, @RequestParam("name") String name, @RequestParam("password") String pwd){
+        return UserModel.getInstance().updateName(UserModel.getInstance().getAccountById(userId).getUsername(), name);
     }
 
-    @RequestMapping(value = "/update/password/{username}", params = {"password", "newpassword"})
+    @RequestMapping(value = "/update/password/{userId}", params = {"password", "newpassword"})
     @ResponseBody
-    public boolean updatePwd(@PathVariable String username, @RequestParam("password") String password, @RequestParam("newpassword") String newpassword){
-        return UserModel.getInstance().updatePwd(username, password, newpassword);
+    public boolean updatePwd(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("newpassword") String newpassword){
+        return UserModel.getInstance().updatePwd(UserModel.getInstance().getAccountById(userId).getUsername(), password, newpassword);
     }
 
     @RequestMapping(value = "/update/email/{userId}", params = {"password", "newemail"})
@@ -176,16 +183,19 @@ public class MainController implements CommandLineRunner{
         return BillModel.getInstance().getLatestBillByVm(UserModel.getInstance().getAccountById(userId), vmIP, password, cloudProv);
     }
 
-    @RequestMapping(value = "/message", params = {"vmIP"})
+    @RequestMapping(value = "/message/{userId}", params = {"password", "vmIP"})
     @ResponseBody
-    public List<Message> getMessage(@RequestParam("vmIP") String vmIP){
-        return MessageModel.getInstance().checkMessage(vmIP);
+    public List<Message> getMessage(@RequestParam("vmIP") String vmIP, @PathVariable String userId, @RequestParam("password") String password){
+        if(UserModel.getInstance().authenUser(UserModel.getInstance().getAccountById(userId).getUsername(), password))
+            return MessageModel.getInstance().checkMessage(vmIP);
+        else
+            return null;
     }
 
     @RequestMapping(value = "/test")
     @ResponseBody
-    public String test(){
-        return ReportModel.getInstance().testReport("1.1.1.1", "01 2015", "02 2015");
+    public void test(){
+        MonitoringModel.getInstance().checkAllVmReport();
     }
 
     @RequestMapping(value = "/report/all/{userId}", params = {"password", "vmIP"})
@@ -213,6 +223,13 @@ public class MainController implements CommandLineRunner{
         while (true) {
             MonitoringModel.getInstance().checkAllUserCloud();
         }
+    }
+
+    @RequestMapping(value = "/predict/{userId}", params = {"password", "vmIP", "start", "end"})
+    @ResponseBody
+    public Prediction getPredictionByMonth(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("vmIP") String vmIP,
+                                         @RequestParam("start") String start, @RequestParam("end") String end){
+        return PredictionModel.getInstance().genPrediction(getReportByMonth(userId, password, vmIP, start, end));
     }
 
     @Override

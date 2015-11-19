@@ -1,23 +1,24 @@
 package th.ac.kmitl.ce.ooad;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Nut on 10/24/2015.
  */
 public abstract class ReportTemplate {
     CloudProvider cloudProvider;
-    double[] cpus;
-    double[] mems;
-    double[] networks;
-    int[] storage;
+    List<Double> cpus;
+    List<Double> mems;
+    List<Double> networks;
+    List<Integer> storage;
     Date timestamp;
 
     public ReportTemplate() {
         timestamp = new Date();
     }
 
-    public ReportTemplate(CloudProvider cloudProvider, double[] cpus, double[] mems, double[] networks, int[] storage) {
+    public ReportTemplate(CloudProvider cloudProvider, List<Double> cpus, List<Double> mems, List<Double> networks, List<Integer> storage) {
         this.cloudProvider = cloudProvider;
         this.cpus = cpus;
         this.mems = mems;
@@ -34,35 +35,35 @@ public abstract class ReportTemplate {
         this.cloudProvider = cloudProvider;
     }
 
-    public double[] getCpus() {
+    public List<Double> getCpus() {
         return cpus;
     }
 
-    public void setCpus(double[] cpus) {
+    public void setCpus(List<Double> cpus) {
         this.cpus = cpus;
     }
 
-    public double[] getMems() {
+    public List<Double> getMems() {
         return mems;
     }
 
-    public void setMems(double[] mems) {
+    public void setMems(List<Double> mems) {
         this.mems = mems;
     }
 
-    public double[] getNetworks() {
+    public List<Double> getNetworks() {
         return networks;
     }
 
-    public void setNetworks(double[] networks) {
+    public void setNetworks(List<Double> networks) {
         this.networks = networks;
     }
 
-    public int[] getStorage() {
+    public List<Integer> getStorage() {
         return storage;
     }
 
-    public void setStorage(int[] storage) {
+    public void setStorage(List<Integer> storage) {
         this.storage = storage;
     }
 
