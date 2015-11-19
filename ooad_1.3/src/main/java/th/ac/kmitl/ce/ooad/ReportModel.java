@@ -1,15 +1,15 @@
 package th.ac.kmitl.ce.ooad;
 
+import sun.java2d.pipe.SpanShapeRenderer;
+
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Nut on 10/24/2015.
  */
 public class ReportModel {
+    private final int SIZE = 3;
     private static ReportModel reportModel = new ReportModel();
     private ReportRepository repo;
 
@@ -75,7 +75,75 @@ public class ReportModel {
     }
 
     protected void putVmReports(String vmIP, Date date){
-        repo.save(vmProvider.getInstance().getVmReport(vmIP, date));
+        Report new_report = null;
+        List<Report> reports = repo.findByvmIP(vmIP);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd MM yyyy HH");
+        //formatter.setTimeZone(TimeZone.getTimeZone("Asia/Bangkok"));
+        String[] s_date = formatter.format(date).split(" ");
+
+        List<Double> cpus;
+        List<Double> mems;
+        List<Double> networks;
+        List<Integer> storages;
+
+        //get old report to update
+        for(Report report : reports){
+            String[] r_date = formatter.format(report.getTimestamp()).split(" ");
+            if(s_date[1].equals(r_date[1]) && s_date[2].equals(r_date[2])){
+                new_report = report;
+                break;
+            }
+        }
+
+        Vm vm = vmProvider.getInstance().getVmStatus(null, vmIP);
+
+        if(new_report != null){
+            cpus = new_report.getCpus();
+            mems = new_report.getMems();
+            networks = new_report.getNetworks();
+            storages = new_report.getStorage();
+
+            cpus = updateValue(cpus, vm.Cpu, Integer.parseInt(s_date[0]));
+            mems = updateValue(mems, vm.Mem, Integer.parseInt(s_date[0]));
+            networks = updateValue(networks, vm.Network, Integer.parseInt(s_date[0]));
+            storages = updateValue(storages, vm.Storage, Integer.parseInt(s_date[0]));
+
+            new_report.setCpus(cpus);
+            new_report.setMems(mems);
+            new_report.setNetworks(networks);
+            new_report.setStorage(storages);
+            new_report.setTimestamp(new Date());
+            repo.save(new_report);
+        }
+        else {
+            cpus = new ArrayList<>();
+            mems = new ArrayList<>();
+            networks= new ArrayList<>();
+            storages = new ArrayList<>();
+
+            cpus = updateValue(cpus, vm.Cpu, Integer.parseInt(s_date[0]));
+            mems = updateValue(mems, vm.Mem, Integer.parseInt(s_date[0]));
+            networks = updateValue(networks, vm.Network, Integer.parseInt(s_date[0]));
+            storages = updateValue(storages, vm.Storage, Integer.parseInt(s_date[0]));
+
+            new_report = new Report(CloudProvider.UNKNOWN, cpus, mems, networks, storages, vmIP);
+            repo.save(new_report);
+        }
+    }
+
+    private List<Double> updateValue(List<Double> data, double value, int index){
+        if (data.get(index) == null || data.get(index) < value){
+            data.add(index, value);
+        }
+        return data;
+    }
+
+    private List<Integer> updateValue(List<Integer> data, int value, int index){
+        if (data.get(index) == null || data.get(index) < value){
+            data.add(index, value);
+        }
+        return data;
     }
 
     protected String testReport(String vmIP, String start, String end){

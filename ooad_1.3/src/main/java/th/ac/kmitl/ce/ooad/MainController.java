@@ -85,15 +85,15 @@ public class MainController implements CommandLineRunner{
             return null;
     }
 
-    @RequestMapping(value = "/update/name/{username}", params = {"name", "password"})
-    public boolean updateName(@PathVariable String username, @RequestParam("name") String name, @RequestParam("password") String pwd){
-        return UserModel.getInstance().updateName(username, name);
+    @RequestMapping(value = "/update/name/{userId}", params = {"name", "password"})
+    public boolean updateName(@PathVariable String userId, @RequestParam("name") String name, @RequestParam("password") String pwd){
+        return UserModel.getInstance().updateName(UserModel.getInstance().getAccountById(userId).getUsername(), name);
     }
 
-    @RequestMapping(value = "/update/password/{username}", params = {"password", "newpassword"})
+    @RequestMapping(value = "/update/password/{userId}", params = {"password", "newpassword"})
     @ResponseBody
-    public boolean updatePwd(@PathVariable String username, @RequestParam("password") String password, @RequestParam("newpassword") String newpassword){
-        return UserModel.getInstance().updatePwd(username, password, newpassword);
+    public boolean updatePwd(@PathVariable String userId, @RequestParam("password") String password, @RequestParam("newpassword") String newpassword){
+        return UserModel.getInstance().updatePwd(UserModel.getInstance().getAccountById(userId).getUsername(), password, newpassword);
     }
 
     @RequestMapping(value = "/update/email/{userId}", params = {"password", "newemail"})
