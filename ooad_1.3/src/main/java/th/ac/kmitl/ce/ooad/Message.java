@@ -1,9 +1,12 @@
 package th.ac.kmitl.ce.ooad;
 
+import org.springframework.data.annotation.Id;
+
 /**
  * Created by Nut on 10/29/2015.
  */
 public class Message {
+    @Id String _id;
     CloudProvider cloudProvider;
     String vm;
     String topic;

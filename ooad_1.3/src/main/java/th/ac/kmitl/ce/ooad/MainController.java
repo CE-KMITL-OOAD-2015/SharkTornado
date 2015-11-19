@@ -207,6 +207,14 @@ public class MainController implements CommandLineRunner{
             return null;
     }
 
+    @RequestMapping(value = "/kohpai")
+    @ResponseBody
+    public void kohpai() throws InterruptedException {
+        while (true) {
+            MonitoringModel.getInstance().checkAllUserCloud();
+        }
+    }
+
     @Override
     public void run(String... args) throws Exception {
         UserModel.getInstance().setRepo(userRepository);

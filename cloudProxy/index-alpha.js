@@ -5,6 +5,8 @@ var keypress = require('keypress');
 
 var url = 'mongodb://localhost:27017/cloud_proxy';
 var peak = false;
+var ratio = 1;
+var peakRatio = 95;
 
 keypress(process.stdin);
 
@@ -62,16 +64,16 @@ var findAndUpdate = function(db, callback) {
                         var network = 0;
 
                         if (peak) {
-                            cpu = ((95*plan["cpu"])/100);
-                            mem = ((95*plan["mem"])/100);
-                            storage = ((95*plan["storage"])/100);
-                            network = ((95*plan["network"])/100);
+                            cpu = ((peakRatio*plan["cpu"])/100);
+                            mem = ((peakRatio*plan["mem"])/100);
+                            storage = ((peakRatio*plan["storage"])/100);
+                            network = ((peakRatio*plan["network"])/100);
                         }
                         else {
-                            cpu = Math.round(random(0.5, ((8*plan["cpu"])/10)) * 100) / 100;
-                            mem = randomInt(128, ((8*plan["mem"])/10));
-                            storage = randomInt(50, ((8*plan["storage"])/10));
-                            network = randomInt(50, ((8*plan["network"])/10));
+                            cpu = Math.round(random(0.5, ((ratio*plan["cpu"])/10)) * 100) / 100;
+                            mem = randomInt(128, ((ratio*plan["mem"])/10));
+                            storage = randomInt(50, ((ratio*plan["storage"])/10));
+                            network = randomInt(50, ((ratio*plan["network"])/10));
                         }
 
                         db.collection('vms').updateOne(
