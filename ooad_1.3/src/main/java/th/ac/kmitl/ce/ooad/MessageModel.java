@@ -34,10 +34,10 @@ public class MessageModel {
 
     //to check new message
     protected List<Message> checkMessage(String vmIP){
-        //return repo.deleteByVm(vmIP);
-        List<Message> messages = new ArrayList<>();
-        messages.add(new Message(CloudProvider.GOOGLE, vmIP, "11 this contains details. 11", "this is the topic of the message"));
-        messages.add(new Message(CloudProvider.GOOGLE, vmIP, "22 this contains details. 22", "this is the topic of the message"));
-        return messages;
+        return repo.deleteByVm(vmIP);
+//        List<Message> messages = new ArrayList<>();
+//        messages.add(new Message(CloudProvider.GOOGLE, vmIP, "11 this contains details. 11", "this is the topic of the message"));
+//        messages.add(new Message(CloudProvider.GOOGLE, vmIP, "22 this contains details. 22", "this is the topic of the message"));
+//        return messages;
     }
 }

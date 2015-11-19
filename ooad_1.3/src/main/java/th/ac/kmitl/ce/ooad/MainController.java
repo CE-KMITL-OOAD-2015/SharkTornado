@@ -33,7 +33,7 @@ public class MainController implements CommandLineRunner{
 
     @RequestMapping(value = "/monitor")
     @ResponseBody
-    public void monitor() {
+    public void monitor() throws InterruptedException {
         MonitoringModel.getInstance().run();
     }
 

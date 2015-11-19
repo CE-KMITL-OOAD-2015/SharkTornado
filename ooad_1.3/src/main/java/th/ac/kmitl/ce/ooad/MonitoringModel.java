@@ -100,11 +100,12 @@ public class MonitoringModel {
             checkVmReport(vm);
         }
     }
-    protected void run(){
+    protected void run() throws InterruptedException {
         while(true) {
             for(int i = 0; i < 20; i++) System.out.println();
             System.out.println("Monitoring running");
             checkAllVmReport();
+            checkAllUserCloud();
         }
     }
 }
