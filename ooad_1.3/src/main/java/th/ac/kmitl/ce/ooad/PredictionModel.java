@@ -29,7 +29,7 @@ public class PredictionModel {
         double max_net = 0.0;
         int max_str = 0;
 
-        Report report = new Report();
+        Report report = null;
 
         try{
             for(Report temp : reports){
@@ -38,6 +38,9 @@ public class PredictionModel {
                     break;
                 }
             }
+
+            if (report == null)
+                return new Prediction();
         } catch(Exception e){
             System.out.println("GOT CHA!!!!");
         }
