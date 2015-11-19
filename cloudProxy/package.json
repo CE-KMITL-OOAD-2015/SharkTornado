@@ -9,6 +9,9 @@
   "author": "N. Srikote",
   "license": "MIT",
   "dependencies": {
-    "mongodb": "^2.0.48"
+    "async": "^1.5.0",
+    "keypress": "^0.2.1",
+    "mongodb": "^2.0.48",
+    "sleep": "^3.0.0"
   }
 }
