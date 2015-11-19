@@ -13,7 +13,7 @@ public class MonitoringModel {
     private MonitoringModel(){
 
     }
-    public MonitoringModel getInstance(){
+    public static MonitoringModel getInstance(){
         return monitoringModel;
     }
     protected void monitorUser(Account user){
@@ -76,6 +76,13 @@ public class MonitoringModel {
         }
         for(Vm vm : vms){
             checkVmReport(vm);
+        }
+    }
+    protected void run(){
+        while(true) {
+            for(int i = 0; i < 20; i++) System.out.println();
+            System.out.println("Monitoring running");
+            checkAllVmReport();
         }
     }
 }
