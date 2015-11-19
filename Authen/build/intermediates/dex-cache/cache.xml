@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="2a7e47da654546f9457deb6132364f1bf33a1857">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-2d6a4c7f07b2c86c434c2a51139f957005dc2cff.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="97f3b099801a9ad9d70e835b9125273e986eb68d">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-7ea8141fda01397c6cb44feecb20020bfaa0e032.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-d3b6481897b5925ef24cab695131648dd5b16962.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="997773777cf3904c11d6764fe3b7668538220e49">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-1d6d0c7dbfc548272a4979734070b1fd91f1a291.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.jjoe64\graphview\4.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="37bf8de5b4f9e7e93006db783b9b3168e32e38e9">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-7fa5a7e88a8100b99a804f1a679eea2685384fc5.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="82825756edeeb3b56b15e73b2edd56e93da5a444">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-f02b924fdabb37e00753ce2f128b361acb4d8df0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="95758a2905669affbffc5ddd262921d375674fad">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-05e3b04395900a3f41a6dfd5bc5b592b2351f1c3.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-5d76db828b9b6082f895e3902fdc322915543936.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="dcb5b75baf05d92e61d5706737200ee55949f97b">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-772aa701b0d49cc939cd55942e2b0246aa24967b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="9cf8c0ef60847621c7ad00b4f78dbfc9daba4af2">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-509ab66a01a8f7569d0251c938def93a7802bb9f.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.1-3d46cb3b32498b89afd08c0caf2741151bed75dc.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1-64329c699fcb32461d679777d39ad0f37cb5686a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="325788a04b436a0bccbc5b4c54cf0f12ebdcbd2d">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-50dc1942ef78cf5475300f97fdd22ea2d7d866c1.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="17449c47df35c754b257532052f1270c444f7993">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-d536361464395ef4353ed31d1819a9c2d2e0c059.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="993834cb17d07d51b92db89d2c330243592ebf77">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-4b58dcfc4e5c76dfa65ed57b8bd5b2f1ed32c153.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="b92002cb2f0e11a226ac5bac6dff1dc2a9d0b774">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-a457fcf53f3e69579e280229eb29fcde77013749.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="3b05c18f60969ecc2ba49c0409c4b96be2d9cb0c">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-f5b80113f39e7c27b13aee66f44bc0a4210cc76b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="3aed37c38c56679602255dd72ef356da5d327cda">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-7b64ba050a8c55ab7cf5ffab2d6e17e0d1059f5f.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="3c729e6d76a36c5dc27e6a4c4009296f49eaa88a">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-c3563c178e463a4bbe8f82dc95f7c9c1c889dd7f.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.android.support\design\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-12dca1eb04c0bb2a44d6e5edd7b8c37daecd609e.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-6805b3d525b78d77457dbbde073764306bb04b40.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="3178362320bcf51228835b60ff978efadfd1f783">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-2d8b95fd80a3d1d745829984ac29a30eab0e374a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\libs\android-async-http-1.4.8.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="77bbfe240e437ecb396d982afa0d3bd4f9090ba7">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\android-async-http-1.4.8-f09fbb482aa691152f4476e8f309070bf20ac4db.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\libs\httpcore-4.0.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="e813b8722c387b22e1adccf7914729db09bcb4a9">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\httpcore-4.0.1-ff7f190057b4cc605789bfc61515e0055db66233.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="d294caf562c4c678b2ef351662a0ca6f1a4d06c0">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-370cbaecd024ab25ffb9729c7591b9ae3a4f4f2b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="d93480da1d303122ee67dc3bc23e6297bdef9951">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-6ea8269b3af04170b45fb4507906a6971bca2ed2.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="d61920aba361832a9545a43fa8c9453eb02f18f7">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-17ecec1e32b54de1db34c33489e2af8582104a20.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-33be7e3166eec455f1e68850266ba15467dd5a0a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="041d93cf0533591c29d1d7263b2fa114dbfb20bd">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-341c526eee293cdd3d05b60f1bf56bfbfe4ff379.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-e2cba723eff4238c710b9e497726a9ebf1c13675.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-measurement\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="482de223655d06253cc6a4955d653f8994169500">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-063470fb8dfd293ee65d2cdc0f6a6a5ee093a8af.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
+        <dex dex="C:\Users\Pongpayak\Documents\GitHub\Authen\app\build\intermediates\pre-dexed\debug\classes-1f3ff2437fe26bb647e6fa10cac71ed4b8ccf480.jar" />
+    </item>
+
+</items>

@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">CMC</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_main_index">Main_index</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_main_page_manager">MainPageManager</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main">CMC</string>
+    <string name="title_activity_main_manager">MainManager</string>
+    <string name="serverip">203.151.92.185:3000</string>
+    <string name="title_activity_cloud_list">Over All</string>
+    <string name="title_activity_adding_cloud_page">AddingCloud_page</string>
+</resources>
